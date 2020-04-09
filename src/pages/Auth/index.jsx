@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+import SignIn from 'pages/Auth/SignIn';
+import SignUp from 'pages/Auth/SignUp';
 
 const Auth = () => {
   return (

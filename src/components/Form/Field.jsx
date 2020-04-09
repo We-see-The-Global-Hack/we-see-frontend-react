@@ -1,4 +1,4 @@
-import Text from '../Form/Text';
+import Text from 'components/Form/Text';
 import { Field as FormikField } from 'formik';
 import React from 'react';
 

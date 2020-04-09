@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import InputText from '../../Input/Text';
+import InputText from 'components/Input/Text';
 
 const FormTextInput = ({
  label,

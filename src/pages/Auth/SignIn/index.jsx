@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import Field from '../../../components/Form/Field';
+import Field from 'components/Form/Field';
 
 const SignIn = () => {
   
