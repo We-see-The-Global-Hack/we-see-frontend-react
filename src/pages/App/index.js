@@ -2,16 +2,21 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 import MainLayout from 'pages/MainLayout'
 import Auth from 'pages/Auth'
+import useAuth from 'hooks/useAuth';
 
-function Index() {
+function App() {
+  const { isAuthorized } = useAuth();
+  
+  console.log('isAuthorized', isAuthorized);
+  
   return (
     <Switch>
-      <Route path={['/sign-in', '/sign-up']} component={Auth} />
+      {!isAuthorized && (<Route path={['/sign-in', '/sign-up']} component={Auth} />)}
       <Route path="/" component={MainLayout} />
     </Switch>
   );
 }
 
-export default Index;
+export default App;
 
 

@@ -3,13 +3,18 @@ import ReactDOM from 'react-dom';
 import Index from 'pages/App';
 import * as serviceWorker from './serviceWorker';
 import history from 'libs/history';
+import { StoreContext } from 'redux-react-hook';
 import { Router } from 'react-router';
+
+import store from 'domain/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router history={history}>
-      <Index />
-    </Router>
+    <StoreContext.Provider value={store}>
+      <Router history={history}>
+        <Index />
+      </Router>
+    </StoreContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
