@@ -14,8 +14,9 @@ const Api = {
     checkUser: apiRequest("get", "auth/check"),
   },
   user: {
-    get: apiRequest("get", (params) => `users/${params.id}`),
-    update: apiRequest("patch", (params) => `users/${params.id}`),
+    get: apiRequest('get', params => `users/${params.id}`),
+    update: apiRequest('patch', params => `users/${params.id}`),
+    list: apiRequest('get', 'users'),
   },
 };
 
