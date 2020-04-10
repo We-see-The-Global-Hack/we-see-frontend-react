@@ -1,5 +1,4 @@
 import React from "react";
-import Title from "components/Title";
 import { Avatar } from "@material-ui/core";
 
 import avatarImage1 from "assets/img/avatar.jpg";
@@ -13,7 +12,7 @@ const cn = classNames.bind(styles);
 const Inbox = () => {
   return (
     <div>
-      <Title text="Inbox" />
+      <h3 className={cn('message_title')}>Inbox</h3>
       <Message
         userName="Max"
         messageText="Hi, I have some questions on ..."

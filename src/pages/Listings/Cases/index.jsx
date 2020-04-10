@@ -1,6 +1,5 @@
 import React from "react";
-import Title from "../../../components/Title";
-import Case from "../../../components/Case";
+import Case from "components/Case";
 
 // styles
 import classNames from "classnames/bind";
@@ -11,7 +10,7 @@ const cn = classNames.bind(styles);
 const Cases = ({ title }) => {
   return (
     <div className={cn("cases")}>
-      <Title text={title} />
+      <h3 className={cn("cases_title")}>{title}</h3>
       <div className={cn("cases_cards")}>
         <Case />
         <Case />

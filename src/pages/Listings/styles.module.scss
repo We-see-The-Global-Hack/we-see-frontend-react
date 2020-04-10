@@ -4,7 +4,10 @@
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 100px;
 }
-.listings{
+.listings {
   display: flex;
   justify-content: space-around;
+  @media (max-width: 1200px) {
+    flex-direction: column-reverse;
+  }
 }
