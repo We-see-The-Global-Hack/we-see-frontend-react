@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import cardImage from "assets/img/card.jpg";
+import mountainImage from 'assets/img/mountain.jpg';
 import {
   Card,
   CardActionArea,
@@ -7,6 +8,7 @@ import {
   CardMedia,
   Typography,
   makeStyles,
+  CardContent,
   Modal,
   Button,
 } from "@material-ui/core";
@@ -31,7 +33,11 @@ const Case = () => {
 
   return (
     <>
-      <Card className={classes.root} variant="outlined" onClick={() => setInOpen(true)}>
+      <Card
+        className={classes.root}
+        variant="outlined"
+        onClick={() => setInOpen(true)}
+      >
         <CardActionArea>
           <CardMedia
             className={classes.media}
@@ -40,7 +46,7 @@ const Case = () => {
           />
         </CardActionArea>
         <CardActions>
-            <Typography gutterBottom>Mentoring & Teaching->Art</Typography>
+          <Typography gutterBottom>Mentoring & Teaching->Art</Typography>
         </CardActions>
       </Card>
       <Modal
@@ -50,25 +56,31 @@ const Case = () => {
         aria-describedby="simple-modal-description"
         className={cn("module")}
       >
-        <div className={cn("module_paper")}>
-          <h2>Mentoring & Teaching->Art</h2>
-          <CardMedia
-              className={classes.media}
-              image={cardImage}
+        <Card className={cn('module_paper')}>
+            <CardMedia
+              className={cn('module_image')}
               title="Contemplative Reptile"
-          />
-          <p>If you disable JavaScript, you will still see me.</p>
-          <div className={cn("modal_buttons")}>
-            <Button onClick={() => setInOpen(false)}>Close</Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => setInOpen(false)}
-            >
-              Apply
+              image={mountainImage}
+            />
+
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              Lizard
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Lizards are a widespread group of squamate reptiles, with over
+              6,000 species, ranging across all continents except Antarctica
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small" color="primary" onClick={() => setInOpen(false)}>
+              Close
             </Button>
-          </div>
-        </div>
+            <Button size="small" color="primary" variant='contained'>
+              Learn More
+            </Button>
+          </CardActions>
+        </Card>
       </Modal>
     </>
   );

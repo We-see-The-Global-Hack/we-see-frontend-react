@@ -47,7 +47,7 @@ const Search = () => {
         </div>
         <div className={cn("search_filters-name")}>
           <TextField label="User" style={{ width: 500 }} />
-          <Button variant="contained">Search</Button>
+          <Button variant="contained" color='primary'>Search</Button>
         </div>
       </div>
       <div className={cn("search_users")}>

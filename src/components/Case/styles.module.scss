@@ -4,11 +4,13 @@
   justify-content: center;
 }
 .module_paper {
-  width: 400px;
+  width: 600px;
   background-color: #fff;
-  padding: 25px;
 }
 .modal_buttons {
   display: flex;
   justify-content: space-between;
+}
+.module_image{
+  height: 300px;
 }
