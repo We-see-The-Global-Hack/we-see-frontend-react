@@ -3,7 +3,7 @@ import Qs from 'qs';
 import store from 'domain/store';
 import { envTokenSelector } from 'domain/env/selectors';
 
-const apiPath = 'https://c8e66ad7.ngrok.io/api';
+const apiPath = `${process.env.REACT_APP_API_PATH}/api`;
 
 export const http = axios.create({
   baseURL: apiPath,

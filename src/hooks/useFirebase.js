@@ -2,10 +2,8 @@ import * as firebase from 'firebase';
 import { useEffect } from 'react';
 
 const firebaseConfig = Object.freeze({
-  apiKey: 'AIzaSyBgYYin4shr3zc4uvTeAbH6ji_nO5Ib2PI',
-  // authDomain: AUTH_DOMAIN,
-  // databaseURL: DATABASE_URL,
-  storageBucket: 'we-see-global-hack.appspot.com',
+  apiKey: process.env.REACT_APP_API_KEY,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
 });
 
 export default function useFirebase() {
