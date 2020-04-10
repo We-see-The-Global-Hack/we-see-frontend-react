@@ -10,7 +10,7 @@ const FormTextInput = ({
  form: { touched, errors },
  type,
  ...rest
-}) => (
+}) =>
   <div className={className}>
     <label>
       {label && <h4>{label}</h4>}
@@ -18,12 +18,13 @@ const FormTextInput = ({
         {...field}
         placeholder={placeholder}
         error={Boolean(touched[field.name] && errors[field.name])}
+        helperText={touched && errors && errors[field.name]}
         type={type}
         {...rest}
       />
     </label>
   </div>
-);
+
 
 export default memo(FormTextInput);
 

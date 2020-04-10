@@ -59,15 +59,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-const SignIn = () => {
-  const dispatch = useDispatch();
-  const onSubmit = useCallback(values => {
-    console.log('values', values);
-    dispatch(thunkSignIn(values));
-  }, []);
-
   const classes = useStyles();
 
   const renderForm = useCallback(({ handleSubmit }) => {
@@ -139,12 +130,12 @@ const SignIn = () => {
     </form>
   }, []);
 
-
-
-
-
-
-
+const SignIn = () => {
+  const dispatch = useDispatch();
+  const onSubmit = useCallback(values => {
+    console.log('values', values);
+    dispatch(thunkSignIn(values));
+  }, []);
 
   // rerender component((
   const { resource, fetchResource } = useFetchData({
