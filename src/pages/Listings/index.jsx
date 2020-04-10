@@ -3,9 +3,7 @@ import Title from "../../components/Title";
 import Causes from "./Cases";
 import Inbox from "./Inbox";
 import api from "libs/apis";
-import { Container } from "@material-ui/core";
 // components
-import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { Container, Button } from "@material-ui/core";
 
@@ -187,7 +185,7 @@ const initialOffer = [
     title: "I need coach in mountaineering",
     description: "I need a coach in mountaineering",
     kind: "offer",
-    image: "mountainImg",
+    image: mountainImg,
     estimatedQuantity: {
       value: 3,
       measurements: "week",
