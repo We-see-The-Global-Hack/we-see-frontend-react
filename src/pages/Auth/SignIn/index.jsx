@@ -62,7 +62,6 @@ const RenderForm = ({ handleSubmit }) => {
 
   const classes = useStyles();
   return (
-    <form>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -72,7 +71,7 @@ const RenderForm = ({ handleSubmit }) => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit}>
             <Field
               variant="outlined"
               margin="normal"
@@ -111,7 +110,7 @@ const RenderForm = ({ handleSubmit }) => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link to="sign-up" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
@@ -125,7 +124,6 @@ const RenderForm = ({ handleSubmit }) => {
           <Copyright />
         </Box>
       </Container>
-    </form>
   );
 };
 
@@ -147,7 +145,7 @@ const SignIn = () => {
       onSubmit={onSubmit}
       validationSchema={signInSchema}
     >
-      <RenderForm />
+     {(props) => <RenderForm {...props} />}
     </Formik>
   );
 };

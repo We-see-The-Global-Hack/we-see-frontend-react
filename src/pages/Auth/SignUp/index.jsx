@@ -37,7 +37,7 @@ function Copyright() {
 }
 
 
-const RenderForm = () => {
+const RenderForm = ({handleSubmit}) => {
   const useStyles = makeStyles(theme => ({
     paper: {
       marginTop: theme.spacing(8),
@@ -61,7 +61,6 @@ const RenderForm = () => {
   const classes = useStyles();
 
   return (
-    <form>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -71,7 +70,7 @@ const RenderForm = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit} >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <Field
@@ -148,13 +147,13 @@ const RenderForm = () => {
           <Copyright />
         </Box>
       </Container>
-    </form>
   );
 };
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const onSubmit = useCallback(values => {
+
     console.log("values", values);
     // dispatch(thunkSignIn(values));
   }, []);
@@ -170,7 +169,7 @@ const SignUp = () => {
       onSubmit={onSubmit}
       validationSchema={signUpSchema}
     >
-      <RenderForm />
+      {(props) => <RenderForm {...props} />}
     </Formik>
   );
 };

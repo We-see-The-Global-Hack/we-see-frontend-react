@@ -1,0 +1,204 @@
+// react
+import React, { useCallback } from "react";
+// redux
+import { useDispatch } from "redux-react-hook";
+// formik
+import { Formik } from "formik";
+//components
+import RadioButton from "components/RadioButton";
+import Multiselect from "components/Multiselect";
+// mu
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import MULink from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import Field from "components/Form/Field";
+import useFetchData from "hooks/useFetchData";
+import api from "libs/apis";
+import { profileSchema } from "utils/validate";
+
+const styles = {
+  gridItem: { marginTop: "10px", marginBottom: "10px" }
+};
+
+const RenderForm = ({handleSubmit}) => {
+  const useStyles = makeStyles(theme => ({
+    paper: {
+      marginTop: theme.spacing(8),
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main
+    },
+    form: {
+      width: "100%",
+      marginTop: theme.spacing(3)
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2)
+    }
+  }));
+
+  const classes = useStyles();
+
+  return (
+    <Container component="main" maxWidth="lg">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Profile
+        </Typography>
+        <form className={classes.form} onSubmit={handleSubmit}>
+          <Grid container justify="space-between">
+            <Grid style={styles.gridItem} item sm={5}>
+              <Field
+                autoComplete="fname"
+                required
+                name="firstName"
+                variant="outlined"
+                fullWidth
+                id="firstName"
+                label="First Name"
+              />
+            </Grid>
+            <Grid style={styles.gridItem} item sm={5}>
+              <Field
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
+              />
+            </Grid>
+            <Grid style={styles.gridItem} item sm={5}>
+              <Field
+                variant="outlined"
+                required
+                fullWidth
+                id="city"
+                label="City"
+                name="city"
+                autoComplete="lname"
+              />
+            </Grid>
+            <Grid style={styles.gridItem} item sm={5}>
+              <Field
+                variant="outlined"
+                required
+                fullWidth
+                id="country"
+                label="Country"
+                name="country"
+                autoComplete="lname"
+              />
+            </Grid>
+            <Grid style={styles.gridItem} item sm={5}>
+              <RadioButton />
+            </Grid>
+            <Grid style={styles.gridItem} item sm={5}>
+              <Field
+                variant="outlined"
+                fullWidth
+                name="dob"
+                label="Dob"
+                type="text"
+                id="dob"
+                autoComplete="dob"
+              />
+            </Grid>
+            <Grid style={styles.gridItem} item sm={5}>
+              <Field
+                autoComplete="email"
+                required
+                name="email"
+                variant="outlined"
+                fullWidth
+                id="email"
+                label="Email"
+              />
+            </Grid>
+            <Grid style={styles.gridItem} item sm={5}>
+              <Field
+                autoComplete="about_me"
+                multiline
+                rows={4}
+                name="about_me"
+                variant="outlined"
+                fullWidth
+                id="aboutMe"
+                label="About me"
+              />
+            </Grid>
+            <Grid style={styles.gridItem} item sm={5}>
+            <Multiselect onChange={(e) => console.log(e)} name="causes" label="Causes" />
+            </Grid>
+            <Grid style={styles.gridItem} item sm={5}>
+              <Multiselect name="targetAudience" label="Target audience" />
+            </Grid>
+            <Grid style={styles.gridItem} item sm={5}>
+              <Field
+                autoComplete="values"
+                multiline
+                rows={4}
+                name="values"
+                variant="outlined"
+                fullWidth
+                id="values"
+                label="Values"
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Save
+          </Button>
+        </form>
+      </div>
+      <Box mt={5}></Box>
+    </Container>
+  );
+};
+
+const Profile = () => {
+  const dispatch = useDispatch();
+  const onSubmit = useCallback(values => {
+    console.log("Aaa")
+    console.log("values", values);
+    // dispatch(thunkSignIn(values));
+  }, []);
+
+  const { resource, fetchResource } = useFetchData({});
+
+  return (
+    <Formik
+      initialValues={{ name: "" }}
+      onSubmit={onSubmit}
+      validationSchema={profileSchema}
+    >
+      {(props) => <RenderForm  {...props}/>}
+    </Formik>
+  );
+};
+
+export default Profile;
