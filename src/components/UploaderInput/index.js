@@ -1,12 +1,12 @@
 // react
 import React, { useCallback, useState } from "react";
-import {Avatar} from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
 // hooks
 import useFirebase from "hooks/useFirebase";
 import useAuth from "hooks/useAuth";
 
 const InputUploader = ({ field, name, options, form, ...props }) => {
-  const [uri, setUri] = useState("")
+  const [uri, setUri] = useState("");
 
   const firebase = useFirebase();
   const { user } = useAuth();
@@ -25,16 +25,19 @@ const InputUploader = ({ field, name, options, form, ...props }) => {
         const downloadedFile = await storageRef.put(selectedFile);
         const uri = await downloadedFile.ref.getDownloadURL();
 
-        setUri(uri)
+        setUri(uri);
         form.setFieldValue(field.name, uri);
       }
     },
     [user]
   );
 
-  if(uri) return <Avatar src={uri} style={{height: 200, width: 200}} />
-
-  return <input onChange={handleFileUploadChange} type="file" />;
+  return (
+    <div>
+      <Avatar src={uri} style={{ height: 200, width: 200}} />
+      <input onChange={handleFileUploadChange} type="file" />
+    </div>
+  );
 };
 
 export default InputUploader;
