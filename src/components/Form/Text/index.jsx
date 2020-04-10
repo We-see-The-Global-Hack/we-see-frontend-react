@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import InputText from 'components/Input/Text';
 
 const FormTextInput = ({
- label,
  className,
  placeholder,
  field,
@@ -12,8 +11,6 @@ const FormTextInput = ({
  ...rest
 }) =>
   <div className={className}>
-    <label>
-      {label && <h4>{label}</h4>}
       <InputComponent
         {...field}
         placeholder={placeholder}
@@ -22,7 +19,6 @@ const FormTextInput = ({
         type={type}
         {...rest}
       />
-    </label>
   </div>
 
 
