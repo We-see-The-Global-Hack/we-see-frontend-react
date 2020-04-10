@@ -4,10 +4,20 @@
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 100px;
 }
+
 .listings {
   display: flex;
   justify-content: space-around;
   @media (max-width: 1200px) {
     flex-direction: column-reverse;
   }
+}
+
+.listings_btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.listings_link {
+  text-decoration: none !important;
 }
