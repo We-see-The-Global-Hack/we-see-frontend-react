@@ -1,9 +1,13 @@
+// react
 import React, { useCallback } from 'react';
 import history from 'libs/history';
+// hooks
 import useAuth from 'hooks/useAuth';
 import useFirebase from 'hooks/useFirebase';
 import { useDispatch } from 'redux-react-hook';
 import { thunkLogOut } from 'domain/env/effects';
+// mu
+import Input from "@material-ui/core/Input";
 
 const MainLayout = () => {
   const { isAuthorized, user } = useAuth();
@@ -38,7 +42,7 @@ const MainLayout = () => {
         }
       </div>
       
-      <input onChange={handleFileUploadChange} type="file" />
+      <Input onChange={handleFileUploadChange} type="file" />
     </div>
   );
 };
