@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import cardImage from "assets/img/card.jpg";
-import mountainImage from 'assets/img/mountain.jpg';
+import mountainImage from "assets/img/mountain.jpg";
 import {
   Card,
   CardActionArea,
@@ -27,7 +26,12 @@ const useStyles = makeStyles({
   },
 });
 
-const Case = () => {
+const Case = ({
+  categoryName,
+  title,
+  description,
+  estimatedQuantity,
+}) => {
   const classes = useStyles();
   const [isOpen, setInOpen] = useState(false);
 
@@ -41,12 +45,12 @@ const Case = () => {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={cardImage}
+            image={mountainImage}
             title="Contemplative Reptile"
           />
         </CardActionArea>
         <CardActions>
-          <Typography gutterBottom>Mentoring & Teaching->Art</Typography>
+          <Typography gutterBottom>{categoryName}</Typography>
         </CardActions>
       </Card>
       <Modal
@@ -56,27 +60,38 @@ const Case = () => {
         aria-describedby="simple-modal-description"
         className={cn("module")}
       >
-        <Card className={cn('module_paper')}>
-            <CardMedia
-              className={cn('module_image')}
-              title="Contemplative Reptile"
-              image={mountainImage}
-            />
+        <Card className={cn("module_paper")}>
+          <CardMedia
+            className={cn("module_image")}
+            title="Contemplative Reptile"
+            image={mountainImage}
+          />
 
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              Lizard
+            <div className={cn('module_header')}>
+              <Typography gutterBottom variant="h5" component="h2">
+                {title}
+              </Typography>
+              <Typography variant="h5"  component="p" color='primary'>
+                {`${estimatedQuantity.value} ${estimatedQuantity.measurements}`}
+              </Typography>
+            </div>
+            <Typography variant="caption"  component="p" className={cn('module_category')}>
+              {categoryName}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+            <Typography variant="body1" color="textSecondary" component="p">
+              {description}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" color="primary" onClick={() => setInOpen(false)}>
+            <Button
+              size="small"
+              color="primary"
+              onClick={() => setInOpen(false)}
+            >
               Close
             </Button>
-            <Button size="small" color="primary" variant='contained'>
+            <Button size="small" color="primary" variant="contained">
               Learn More
             </Button>
           </CardActions>

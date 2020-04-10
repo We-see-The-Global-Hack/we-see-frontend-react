@@ -14,3 +14,15 @@
 .module_image{
   height: 300px;
 }
+.module_header{
+  display: flex;
+  justify-content: space-between;
+}
+.module_date{
+  font-size: 1.2em;
+  color: #3f51b5;
+}
+.module_category{
+  color: #5c5c5c;
+  font-style: italic;
+}
