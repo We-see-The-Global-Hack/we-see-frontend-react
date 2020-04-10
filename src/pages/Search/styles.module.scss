@@ -1,0 +1,28 @@
+.search_filters {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.search_filters-selectors {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.search_users-wrapper {
+  margin-top: 50px;
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px 10px;
+  @media (max-width: 850px) {
+    grid-template-columns: 1fr;
+  }
+}
+.search_users {
+  display: flex;
+  justify-content: center;
+}
+.search_filters-name{
+  display: flex;
+  justify-content: space-between;
+}
