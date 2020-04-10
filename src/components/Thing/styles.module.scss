@@ -1,0 +1,16 @@
+.thing{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 25px;
+  border: 2px solid rgba(#333, 0.2);
+}
+.thing_image{
+  height: 100px;
+  width: 250px;
+}
+.thing_content{
+  padding: 0 15px;
+}

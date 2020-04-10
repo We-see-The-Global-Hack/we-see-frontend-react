@@ -1,6 +1,5 @@
 import React from "react";
 import Case from "components/Case";
-
 // styles
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";

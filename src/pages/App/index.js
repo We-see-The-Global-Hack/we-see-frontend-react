@@ -11,6 +11,7 @@ import useFetchData from 'hooks/useFetchData';
 import api from 'libs/apis';
 import history from 'libs/history';
 import Profile from 'pages/Profile';
+import Offer from "pages/Offers";
 
 const theme = createMuiTheme({
   palette: {
@@ -57,6 +58,7 @@ function App() {
           <Route path={["/sign-in", "/sign-up"]} component={Auth} />
         )}
         <Route path={"/profile"} component={Profile} />
+        <Route path={"/listings/offer"} component={Offer} />
         <Route path={"/listings"} component={Listings} />
         <Route path={"/search"} component={Search} />
         <Route path="/" component={MainLayout} />
