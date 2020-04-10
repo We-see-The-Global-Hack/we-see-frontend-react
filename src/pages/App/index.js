@@ -15,6 +15,8 @@ import Offer from "pages/Offers";
 import Needs from "pages/Needs";
 import CreateNeeds from "pages/CreateNeeds";
 import CreateOffers from "pages/CreateOffers";
+import GlobalOffer from "pages/Global/Offers";
+import GlobalNeeds from "pages/Global/Needs";
 
 const theme = createMuiTheme({
   palette: {
@@ -56,19 +58,27 @@ function App() {
   
   return (
     <ThemeProvider theme={theme}>
-      <Switch>
-        {!isAuthorized && (
-          <Route path={["/sign-in", "/sign-up"]} component={Auth} />
+      <>
+        {isAuthorized ? (
+          <Switch>
+            <Route path={"/profile"} component={Profile} />
+            <Route path={"/listings/offers"} component={Offer} />
+            <Route path={"/listings/create/needs"} component={CreateNeeds} />
+            <Route path={"/listings/create/offers"} component={CreateOffers} />
+            <Route path={"/global/offers"} component={GlobalOffer} />
+            <Route path={"/listings/needs"} component={Needs} />
+            <Route path={"/global/needs"} component={GlobalNeeds} />
+            <Route path={"/listings"} component={Listings} />
+            <Route path={'/search'} component={Search} />
+            <Route path="/" component={MainLayout} />
+          </Switch>
+        ) : (
+          <Switch>
+            <Route path={["/sign-in", "/sign-up"]} component={Auth} />
+            <Route path="/" component={MainLayout} />
+          </Switch>
         )}
-        <Route path={"/profile"} component={Profile} />
-        <Route path={"/listings/offers"} component={Offer} />
-        <Route path={"/listings/needs"} component={Needs} />
-        <Route path={"/listings/create/needs"} component={CreateNeeds} />
-        <Route path={"/listings/create/offers"} component={CreateOffers} />
-        <Route path={"/listings"} component={Listings} />
-        <Route path={"/search"} component={Search} />
-        <Route path="/" component={MainLayout} />
-      </Switch>
+      </>
     </ThemeProvider>
   );
 }

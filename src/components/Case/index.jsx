@@ -91,9 +91,6 @@ const Case = ({
             >
               Close
             </Button>
-            <Button size="small" color="primary" variant="contained">
-              Learn More
-            </Button>
           </CardActions>
         </Card>
       </Modal>

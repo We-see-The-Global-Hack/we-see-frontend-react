@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Index from 'pages/App';
+import App from 'pages/App';
 import * as serviceWorker from './serviceWorker';
 import history from 'libs/history';
 import { StoreContext } from 'redux-react-hook';
@@ -12,7 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
     <StoreContext.Provider value={store}>
       <Router history={history}>
-        <Index />
+        <App />
       </Router>
     </StoreContext.Provider>
   </React.StrictMode>,

@@ -6,9 +6,12 @@ import api from "libs/apis";
 import { Container } from "@material-ui/core";
 // components
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
+import { Container, Button } from "@material-ui/core";
 
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
+import ApplicationBar from 'components/AppBar';
 
 const cn = classNames.bind(styles);
 
@@ -21,19 +24,42 @@ const Listings = () => {
   }, []);
   return (
     <Container maxWidth="lg">
-      <Title text="Your Listings" />
+      <ApplicationBar />
+      <Title text="My Listings" />
       <div className={cn("listings")}>
         <div className={cn("listings_cases")}>
           <Causes isOffers title="Offers" link="/listings/offers" data={initialOffer} />
           <Causes isNeeds title="Needs" link="/listings/needs" data={initialNeeds} />
           <Causes title="Your Matches" link="/listings" data={initialOffer} />
           <Causes
+            title="My Offers"
+            link="/listings/offers"
+            data={initialOffer}
+          />
+          <Causes title="My Needs" link="/listings/needs" data={initialNeeds} />
+          <Causes title="My Matches" link="/listings" data={initialOffer} />
+          <Causes
             title="Needs/Offers based on your interest"
             link="/listings"
             data={initialOffer}
           />
         </div>
-        <Inbox />
+        <div>
+          <div className={cn("listings_btn")}>
+            <Link to="/global/offers" className={cn("listings_link")}>
+              <Button color="primary" variant="contained">
+                Offers
+              </Button>
+            </Link>
+            <Link to="/global/needs" className={cn("listings_link")}>
+              <Button color="primary" variant="contained">
+                Needs
+              </Button>
+            </Link>
+          </div>
+
+          <Inbox />
+        </div>
       </div>
     </Container>
   );
