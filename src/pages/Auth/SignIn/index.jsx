@@ -1,67 +1,68 @@
 // react
-import React, { useCallback, memo } from 'react';
-import { Formik } from 'formik';
-import api from 'libs/apis';
-import useFetchData from 'hooks/useFetchData';
-import { useDispatch } from 'redux-react-hook';
-import { thunkSignIn } from 'domain/env/effects';
+import React, { useCallback, memo } from "react";
+import { Formik } from "formik";
+import api from "libs/apis";
+import useFetchData from "hooks/useFetchData";
+import { useDispatch } from "redux-react-hook";
+import { thunkSignIn } from "domain/env/effects";
 //components
-import Link from "components/Link"
-import Field from 'components/Form/Field';
+import Link from "components/Link";
+import Field from "components/Form/Field";
 // mu
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import MULink from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import MULink from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 // utils
-import {signInSchema} from "utils/validate"
-
+import { signInSchema } from "utils/validate";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <MULink color="inherit" href="#">
         We see
-      </MULink>{' '}
+      </MULink>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+
+
+const RenderForm = ({ handleSubmit }) => {
+  const useStyles = makeStyles(theme => ({
+    paper: {
+      marginTop: theme.spacing(8),
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main
+    },
+    form: {
+      width: "100%", // Fix IE 11 issue.
+      marginTop: theme.spacing(1)
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2)
+    }
+  }));
 
   const classes = useStyles();
-
-  const renderForm = useCallback(({ handleSubmit }) => {
-    return  <form>
+  return (
+    <form>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -115,9 +116,7 @@ const useStyles = makeStyles((theme) => ({
                 </Link>
               </Grid>
               <Grid item>
-                <Link to="sign-up">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+                <Link to="sign-up">{"Don't have an account? Sign Up"}</Link>
               </Grid>
             </Grid>
           </form>
@@ -127,32 +126,30 @@ const useStyles = makeStyles((theme) => ({
         </Box>
       </Container>
     </form>
-  }, []);
+  );
+};
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const onSubmit = useCallback(values => {
-    console.log('values', values);
+    console.log("values", values);
     dispatch(thunkSignIn(values));
   }, []);
 
   const { resource, fetchResource } = useFetchData({
     api: api.todos,
-    initialValues: {},
+    initialValues: {}
   });
 
-
   return (
-      <Formik
-        initialValues={{ name: '' }}
-        onSubmit={onSubmit}
-        validationSchema={signInSchema}
-      >
-        {renderForm}
-      </Formik>
+    <Formik
+      initialValues={{ name: "" }}
+      onSubmit={onSubmit}
+      validationSchema={signInSchema}
+    >
+      <RenderForm />
+    </Formik>
   );
 };
 
 export default memo(SignIn);
-
-
