@@ -11,14 +11,17 @@ const cn = classNames.bind(styles);
 
 const Listings = () => {
   return (
-    <Container maxWidth='lg'>
+    <Container maxWidth="lg">
       <Title text="Your Listings" />
       <div className={cn("listings")}>
         <div className={cn("listings_cases")}>
-          <Causes title="Offers" />
-          <Causes title="Needs" />
-          <Causes title="Your Matches" />
-          <Causes title="Needs/Offers based on your interest" />
+          <Causes title="Offers" link="/listings/offers" />
+          <Causes title="Needs" link="/listings/needs" />
+          <Causes title="Your Matches" link="/listings" />
+          <Causes
+            title="Needs/Offers based on your interest"
+            link="/listings"
+          />
         </div>
         <Inbox />
       </div>
