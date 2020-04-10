@@ -3,7 +3,7 @@ import { Field as FormikField } from 'formik';
 import React from 'react';
 
 export default ({ name, component = Text, ...rest }) => {
- return  <FormikField
+ return <FormikField
     name={name}
     component={component}
     label={name}

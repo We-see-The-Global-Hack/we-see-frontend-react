@@ -24,12 +24,30 @@ import Field from "components/Form/Field";
 import useFetchData from "hooks/useFetchData";
 import api from "libs/apis";
 import { profileSchema } from "utils/validate";
+import { causes, targetAudience } from './options'
 
 const styles = {
   gridItem: { marginTop: "10px", marginBottom: "10px" }
 };
 
-const RenderForm = ({handleSubmit}) => {
+const initialValues = {
+  firstName: '',
+  lastName: '',
+  city: '',
+  country: '',
+  dob: '',
+  email: '',
+  about_me: '',
+  causes: [],
+  targetAudience: [],
+  values: '',
+};
+
+const Profile = () => {
+  const onSubmit = useCallback(values => {
+    console.log("values", values);
+  }, []);
+  
   const useStyles = makeStyles(theme => ({
     paper: {
       marginTop: theme.spacing(8),
@@ -49,9 +67,130 @@ const RenderForm = ({handleSubmit}) => {
       margin: theme.spacing(3, 0, 2)
     }
   }));
-
+  
   const classes = useStyles();
 
+  
+  const renderForm = useCallback(({ handleSubmit }) => (
+    <form className={classes.form} onSubmit={handleSubmit}>
+      <Grid container justify="space-between">
+        <Grid style={styles.gridItem} item sm={5}>
+          <Field
+            autoComplete="fname"
+            required
+            name="firstName"
+            variant="outlined"
+            fullWidth
+            id="firstName"
+            label="First Name"
+          />
+        </Grid>
+        <Grid style={styles.gridItem} item sm={5}>
+          <Field
+            variant="outlined"
+            required
+            fullWidth
+            id="lastName"
+            label="Last Name"
+            name="lastName"
+            autoComplete="lname"
+          />
+        </Grid>
+        <Grid style={styles.gridItem} item sm={5}>
+          <Field
+            variant="outlined"
+            required
+            fullWidth
+            id="city"
+            label="City"
+            name="city"
+            autoComplete="lname"
+          />
+        </Grid>
+        <Grid style={styles.gridItem} item sm={5}>
+          <Field
+            variant="outlined"
+            required
+            fullWidth
+            id="country"
+            label="Country"
+            name="country"
+            autoComplete="lname"
+          />
+        </Grid>
+        <Grid style={styles.gridItem} item sm={5}>
+          <RadioButton />
+        </Grid>
+        <Grid style={styles.gridItem} item sm={5}>
+          <Field
+            variant="outlined"
+            fullWidth
+            name="dob"
+            label="Dob"
+            type="text"
+            id="dob"
+            autoComplete="dob"
+          />
+        </Grid>
+        <Grid style={styles.gridItem} item sm={5}>
+          <Field
+            autoComplete="email"
+            required
+            name="email"
+            variant="outlined"
+            fullWidth
+            id="email"
+            label="Email"
+          />
+        </Grid>
+        <Grid style={styles.gridItem} item sm={5}>
+          <Field
+            autoComplete="about_me"
+            multiline
+            rows={4}
+            name="about_me"
+            variant="outlined"
+            fullWidth
+            id="aboutMe"
+            label="About me"
+          />
+        </Grid>
+        <Grid style={styles.gridItem} item sm={5}>
+          <Field
+            component={Multiselect}
+            name="causes"
+            label="Causes"
+            options={causes}
+          />
+        </Grid>
+        <Grid style={styles.gridItem} item sm={5}>
+          <Multiselect name="targetAudience" label="Target audience" options={targetAudience} />
+        </Grid>
+        <Grid style={styles.gridItem} item sm={5}>
+          <Field
+            autoComplete="values"
+            multiline
+            rows={4}
+            name="values"
+            variant="outlined"
+            fullWidth
+            id="values"
+            label="Values"
+          />
+        </Grid>
+      </Grid>
+      <Button
+        type="submit"
+        fullWidth
+        variant="contained"
+        color="primary"
+        className={classes.submit}
+      >
+        Save
+      </Button>
+    </form>
+  ), []);
+  
   return (
     <Container component="main" maxWidth="lg">
       <CssBaseline />
@@ -62,142 +201,16 @@ const RenderForm = ({handleSubmit}) => {
         <Typography component="h1" variant="h5">
           Profile
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
-          <Grid container justify="space-between">
-            <Grid style={styles.gridItem} item sm={5}>
-              <Field
-                autoComplete="fname"
-                required
-                name="firstName"
-                variant="outlined"
-                fullWidth
-                id="firstName"
-                label="First Name"
-              />
-            </Grid>
-            <Grid style={styles.gridItem} item sm={5}>
-              <Field
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid style={styles.gridItem} item sm={5}>
-              <Field
-                variant="outlined"
-                required
-                fullWidth
-                id="city"
-                label="City"
-                name="city"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid style={styles.gridItem} item sm={5}>
-              <Field
-                variant="outlined"
-                required
-                fullWidth
-                id="country"
-                label="Country"
-                name="country"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid style={styles.gridItem} item sm={5}>
-              <RadioButton />
-            </Grid>
-            <Grid style={styles.gridItem} item sm={5}>
-              <Field
-                variant="outlined"
-                fullWidth
-                name="dob"
-                label="Dob"
-                type="text"
-                id="dob"
-                autoComplete="dob"
-              />
-            </Grid>
-            <Grid style={styles.gridItem} item sm={5}>
-              <Field
-                autoComplete="email"
-                required
-                name="email"
-                variant="outlined"
-                fullWidth
-                id="email"
-                label="Email"
-              />
-            </Grid>
-            <Grid style={styles.gridItem} item sm={5}>
-              <Field
-                autoComplete="about_me"
-                multiline
-                rows={4}
-                name="about_me"
-                variant="outlined"
-                fullWidth
-                id="aboutMe"
-                label="About me"
-              />
-            </Grid>
-            <Grid style={styles.gridItem} item sm={5}>
-            <Multiselect onChange={(e) => console.log(e)} name="causes" label="Causes" />
-            </Grid>
-            <Grid style={styles.gridItem} item sm={5}>
-              <Multiselect name="targetAudience" label="Target audience" />
-            </Grid>
-            <Grid style={styles.gridItem} item sm={5}>
-              <Field
-                autoComplete="values"
-                multiline
-                rows={4}
-                name="values"
-                variant="outlined"
-                fullWidth
-                id="values"
-                label="Values"
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Save
-          </Button>
-        </form>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          validationSchema={profileSchema}
+        >
+          {renderForm}
+        </Formik>
       </div>
-      <Box mt={5}></Box>
+      <Box mt={5} />
     </Container>
-  );
-};
-
-const Profile = () => {
-  const dispatch = useDispatch();
-  const onSubmit = useCallback(values => {
-    console.log("Aaa")
-    console.log("values", values);
-    // dispatch(thunkSignIn(values));
-  }, []);
-
-  const { resource, fetchResource } = useFetchData({});
-
-  return (
-    <Formik
-      initialValues={{ name: "" }}
-      onSubmit={onSubmit}
-      validationSchema={profileSchema}
-    >
-      {(props) => <RenderForm  {...props}/>}
-    </Formik>
   );
 };
 
