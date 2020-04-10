@@ -8,6 +8,7 @@ import { Container, Button } from "@material-ui/core";
 
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
+import ApplicationBar from 'components/AppBar';
 
 const cn = classNames.bind(styles);
 
@@ -20,6 +21,7 @@ const Listings = () => {
   }, []);
   return (
     <Container maxWidth="lg">
+      <ApplicationBar />
       <Title text="My Listings" />
       <div className={cn("listings")}>
         <div className={cn("listings_cases")}>

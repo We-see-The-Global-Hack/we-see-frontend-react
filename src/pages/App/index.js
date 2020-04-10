@@ -53,30 +53,27 @@ function App() {
     checkUser();
   }, [isAuthorized]);
   
-  const AuthorizedRoutes = () => (
-    <>
-      <Route path={"/profile"} component={Profile} />
-      <Route path={"/listings/offers"} component={Offer} />
-      <Route path={"/global/offers"} component={GlobalOffer} />
-      <Route path={"/listings/needs"} component={Needs} />
-      <Route path={"/global/needs"} component={GlobalNeeds} />
-      <Route path={"/listings"} component={Listings} />
-      <Route path={'/search'} component={Search} />
-    </>
-  );
-
   return (
     <ThemeProvider theme={theme}>
-      <Switch>
+      <>
         {isAuthorized ? (
-          <>
-            <Route path={['/profile', '/listings', '/search', '/global']} component={AuthorizedRoutes} />
-          </>
+          <Switch>
+            <Route path={"/profile"} component={Profile} />
+            <Route path={"/listings/offers"} component={Offer} />
+            <Route path={"/global/offers"} component={GlobalOffer} />
+            <Route path={"/listings/needs"} component={Needs} />
+            <Route path={"/global/needs"} component={GlobalNeeds} />
+            <Route path={"/listings"} component={Listings} />
+            <Route path={'/search'} component={Search} />
+            <Route path="/" component={MainLayout} />
+          </Switch>
         ) : (
-          <Route path={["/sign-in", "/sign-up"]} component={Auth} />
+          <Switch>
+            <Route path={["/sign-in", "/sign-up"]} component={Auth} />
+            <Route path="/" component={MainLayout} />
+          </Switch>
         )}
-        <Route path="/" component={MainLayout} />
-      </Switch>
+      </>
     </ThemeProvider>
   );
 }

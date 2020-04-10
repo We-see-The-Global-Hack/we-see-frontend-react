@@ -1,7 +1,5 @@
 // react
 import React, { useCallback } from "react";
-// redux
-import { useDispatch } from "redux-react-hook";
 // formik
 import { Formik } from "formik";
 //components
@@ -11,16 +9,11 @@ import InputUploader from "components/UploaderInput";
 import DatePicker from "components/DatePicker";
 import { Link } from "react-router-dom";
 // mu
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
+import { Avatar, Button, Container, CssBaseline, Grid, Box, Typography } from '@material-ui/core';
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import Field from "components/Form/Field";
+
 import api from "libs/apis";
 import { profileSchema } from "utils/validate";
 import useOnSubmit from "hooks/useOnSubmit";
@@ -28,6 +21,7 @@ import useAuth from "hooks/useAuth";
 import useFetchData from "hooks/useFetchData";
 // options
 import { causes, targetAudience, gender } from "./options";
+import ApplicationBar from 'components/AppBar';
 
 const styles = {
   gridItem: { marginTop: "10px", marginBottom: "10px" },
@@ -216,6 +210,7 @@ const Profile = () => {
   return (
     <Container component="main" maxWidth="lg">
       <CssBaseline />
+      <ApplicationBar />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
