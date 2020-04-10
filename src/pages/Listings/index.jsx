@@ -45,8 +45,8 @@ const initialOffer = [
     categoryId: "5e9094df744248c0bee9e2e1",
     categoryName: "Agriculture & Animals' care",
     userId: "5e9046b052f75f19a56647b2",
-    title: "I need help with my dog",
-    description: "I'm ill and cannot walk my dog up",
+    title: "I can walk with dog",
+    description: "I'm can with someone dogs",
     kind: "need",
     estimatedQuantity: {
       value: 10,
@@ -58,8 +58,8 @@ const initialOffer = [
     categoryId: "5e9094df744248c0bee9e2e1",
     categoryName: "Agriculture & Animals' care",
     userId: "5e9046b052f75f19a56647b2",
-    title: "I need help with my dog",
-    description: "I'm ill and cannot walk my dog up",
+    title: "I can walk with dog",
+    description: "I'm can with someone dogs",
     kind: "need",
     estimatedQuantity: {
       value: 10,
@@ -71,8 +71,8 @@ const initialOffer = [
     categoryId: "5e9094df744248c0bee9e2e1",
     categoryName: "Agriculture & Animals' care",
     userId: "5e9046b052f75f19a56647b2",
-    title: "I need help with my dog",
-    description: "I'm ill and cannot walk my dog up",
+    title: "I can walk with dog",
+    description: "I'm can with someone dogs",
     kind: "need",
     estimatedQuantity: {
       value: 10,
@@ -84,8 +84,8 @@ const initialOffer = [
     categoryId: "5e9094df744248c0bee9e2e1",
     categoryName: "Agriculture & Animals' care",
     userId: "5e9046b052f75f19a56647b2",
-    title: "I need help with my dog",
-    description: "I'm ill and cannot walk my dog up",
+    title: "I can walk with dog",
+    description: "I'm can with someone dogs",
     kind: "need",
     estimatedQuantity: {
       value: 10,

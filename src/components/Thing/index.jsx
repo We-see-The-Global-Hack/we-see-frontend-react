@@ -7,7 +7,7 @@ import cardImage from "assets/img/mountain.jpg";
 
 const cn = classNames.bind(styles);
 
-const Thing = () => {
+const Thing = ({ categoryName, title, description, estimatedQuantity }) => {
   return (
     <div className={cn("thing")}>
       <CardMedia
@@ -15,29 +15,41 @@ const Thing = () => {
         image={cardImage}
         title="Contemplative Reptile"
       />
-      <div className={cn("thing_content")}>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="h2"
-          className={cn("thing_title")}
-        >
-          Lizard
-        </Typography>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          component="p"
-          className={cn("thing_description")}
-        >
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
+      <div className={cn("thing_wrapper")}>
+        <div className={cn("thing_container")}>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h2"
+            className={cn("thing_title")}
+          >
+            {title}
+          </Typography>
+          <Typography
+            variant="caption"
+            component="p"
+            className={cn("thing_category")}
+          >
+            {categoryName}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="p"
+            className={cn("thing_description")}
+          >
+            {description}
+          </Typography>
+        </div>
+        <div className={cn('thing_add')}>
+          <Typography variant="h5" component="p" color="primary">
+            {`${estimatedQuantity.value} ${estimatedQuantity.measurements}`}
+          </Typography>
+          <Button color="primary" variant="contained">
+            Open
+          </Button>
+        </div>
       </div>
-
-      <Button color="primary" variant="contained">
-        Open
-      </Button>
     </div>
   );
 };
