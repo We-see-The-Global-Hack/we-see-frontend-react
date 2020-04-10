@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router';
 import MainLayout from 'pages/MainLayout'
 import Auth from 'pages/Auth'
 import useAuth from 'hooks/useAuth';
-import Listings from 'components/Listings';
+import Listings from 'pages/Listings';
 
 function App() {
   const { isAuthorized } = useAuth();
