@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Route, Switch } from "react-router";
 import MainLayout from "pages/MainLayout";
 import Auth from "pages/Auth";
@@ -51,18 +51,26 @@ function App() {
     checkUser();
   }, [isAuthorized]);
   
+  const AuthorizedRoutes = () => (
+    <>
+      <Route path={"/profile"} component={Profile} />
+      <Route path={"/listings/offers"} component={Offer} />
+      <Route path={"/listings/needs"} component={Needs} />
+      <Route path={"/listings"} component={Listings} />
+      <Route path={'/search'} component={Search} />
+    </>
+  );
   
   return (
     <ThemeProvider theme={theme}>
       <Switch>
-        {!isAuthorized && (
+        {isAuthorized ? (
+          <>
+            <Route path={['/profile', '/listings', '/search']} component={AuthorizedRoutes} />
+          </>
+        ) : (
           <Route path={["/sign-in", "/sign-up"]} component={Auth} />
         )}
-        <Route path={"/profile"} component={Profile} />
-        <Route path={"/listings/offers"} component={Offer} />
-        <Route path={"/listings/needs"} component={Needs} />
-        <Route path={"/listings"} component={Listings} />
-        <Route path={"/search"} component={Search} />
         <Route path="/" component={MainLayout} />
       </Switch>
     </ThemeProvider>

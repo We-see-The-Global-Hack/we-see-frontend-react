@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useRef, useState } from "react";
 // components
 import Title from "components/Title";
 import { TextField, Button, Container } from "@material-ui/core";
@@ -9,11 +9,40 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 // images
 import avatarImage1 from "assets/img/avatar.jpg";
-import avatarImage2 from "assets/img/avatar2.jpg";
+
+import get from 'lodash.get';
+import useFetchData from 'hooks/useFetchData';
+import api from 'libs/apis';
 
 const cn = classNames.bind(styles);
 
+const initialFilters = {
+  causes: null,
+  targetAudience: null,
+  gender: null,
+  firstName: '',
+};
+
 const Search = () => {
+  const [filters, setFilters] = useState(initialFilters);
+  
+  const { resource, fetchResource } = useFetchData({
+    api: api.user.list,
+    initialValues: [],
+    serializer: response => response.data,
+  });
+  
+  const search = useCallback(() => {
+    const copiedFilters = Object.assign({}, filters);
+    Object.keys(copiedFilters).forEach(key => !Boolean(copiedFilters[key]) ? delete copiedFilters[key] : {});
+    fetchResource({ params: copiedFilters });
+  }, [filters]);
+  
+  const changeText = (e) => {
+    const text = get(e, ['target', 'value'], '');
+    setFilters(old => ({ ...old, firstName: `/${text}/` }));
+  };
+  
   return (
     <Container maxWidth='lg'>
       <Title text="Search" />
@@ -22,6 +51,8 @@ const Search = () => {
           <Autocomplete
             options={causes}
             style={{ width: 230 }}
+            onChange={(e, value) => setFilters(old => ({ ...old, causes: value }))}
+            value={filters.causes}
             renderInput={(params) => (
               <TextField {...params} label="Causes" variant="outlined" />
             )}
@@ -29,6 +60,8 @@ const Search = () => {
           <Autocomplete
             options={target_audience}
             style={{ width: 300 }}
+            onChange={(e, value) => setFilters(old => ({ ...old, targetAudience: value }))}
+            value={filters.targetAudience}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -40,58 +73,28 @@ const Search = () => {
           <Autocomplete
             options={gender}
             style={{ width: 230 }}
+            onChange={(e, value) => setFilters(old => ({ ...old, gender: value }))}
+            value={filters.gender}
             renderInput={(params) => (
               <TextField {...params} label="Gender" variant="outlined" />
             )}
           />
         </div>
         <div className={cn("search_filters-name")}>
-          <TextField label="User" style={{ width: 500 }} />
-          <Button variant="contained" color='primary'>Search</Button>
+          <TextField value={filters.search} onChange={changeText} label="User" style={{ width: 500 }} />
+          <Button type="button" onClick={search} variant="contained" color='primary'>Search</Button>
         </div>
       </div>
       <div className={cn("search_users")}>
         <div className={cn("search_users-wrapper")}>
-          <User
-            avatar={avatarImage1}
-            name="John Smith"
-            email="john.smith@mail.com"
-          />
-          <User
-            avatar={avatarImage2}
-            name="John Smith"
-            email="john.smith@mail.com"
-          />
-          <User
-            avatar={avatarImage1}
-            name="John Smith"
-            email="john.smith@mail.com"
-          />
-          <User
-            avatar={avatarImage2}
-            name="John Smith"
-            email="john.smith@mail.com"
-          />
-          <User
-            avatar={avatarImage2}
-            name="John Smith"
-            email="john.smith@mail.com"
-          />
-          <User
-            avatar={avatarImage2}
-            name="John Smith"
-            email="john.smith@mail.com"
-          />
-          <User
-            avatar={avatarImage1}
-            name="John Smith"
-            email="john.smith@mail.com"
-          />
-          <User
-            avatar={avatarImage1}
-            name="John Smith"
-            email="john.smith@mail.com"
-          />
+          {resource.map(user => (
+            <User
+              key={user.id}
+              avatar={avatarImage1}
+              name={`${user.firstName} ${user.lastName}`}
+              email={user.email}
+            />
+          ))}
         </div>
       </div>
     </Container>
