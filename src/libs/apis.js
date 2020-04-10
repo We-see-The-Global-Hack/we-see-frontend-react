@@ -7,6 +7,7 @@ const Api = {
   todos: apiRequest('get', 'todos/1'),
   auth: {
     signIn: apiRequest('get', 'todos/1'),
+    signUp: apiRequest("post", )
   }
 };
 
