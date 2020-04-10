@@ -7,6 +7,7 @@ import { Formik } from "formik";
 //components
 import RadioButton from "components/RadioButton";
 import Multiselect from "components/Multiselect";
+import InputUploader from "components/UploaderInput";
 // mu
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -31,6 +32,7 @@ const styles = {
 };
 
 const initialValues = {
+  avatar: "",
   firstName: '',
   lastName: '',
   city: '',
@@ -85,6 +87,14 @@ const Profile = () => {
   const renderForm = useCallback(({ handleSubmit }) => (
     <form className={classes.form} onSubmit={handleSubmit}>
       <Grid container justify="space-between">
+        <Grid style={styles.gridItem} item sm={12}>
+          <Field
+            name="avatar"
+            uri=""
+            component={InputUploader}
+            label="avatar"
+          />
+        </Grid>
         <Grid style={styles.gridItem} item sm={5}>
           <Field
             autoComplete="fname"
@@ -96,6 +106,7 @@ const Profile = () => {
             label="First Name"
           />
         </Grid>
+
         <Grid style={styles.gridItem} item sm={5}>
           <Field
             variant="outlined"
