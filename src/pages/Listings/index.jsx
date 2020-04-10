@@ -9,6 +9,16 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { Container, Button } from "@material-ui/core";
 
+import couchImg from "assets/img/listings/image.png";
+import lgbtImg from "assets/img/listings/image (1).png";
+import groceriesImg from "assets/img/listings/image (2)-min.png";
+import dogImg from "assets/img/listings/dog-walking-right-wrong-01.jpg";
+import foodImg from "assets/img/listings/image (3)-min.png";
+import dogTollImg from "assets/img/listings/image (4).png";
+import closesImg from "assets/img/listings/image (5).png";
+import mountainImg from "assets/img/listings/mountain.jpg";
+
+
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import ApplicationBar from 'components/AppBar';
@@ -67,15 +77,30 @@ const Listings = () => {
 
 export default Listings;
 
-const initialOffer = [
+const initialNeeds = [
+  {
+    generalType: "material",
+    categoryId: "5e9094df744248c0bee9e2e1",
+    categoryName: "Material Goods",
+    userId: "5e9046b052f75f19a56647b2",
+    title: "I am offering my blue couch",
+    description: "I am offering my blue couch with pillows for those in need. It has been used, so there are some stains on it, but it will do for sleeping and chilling.\"\n",
+    kind: "offer",
+    estimatedQuantity: {
+      value: 1,
+      measurements: "couch",
+    },
+    image: couchImg,
+  },
   {
     generalType: "time",
     categoryId: "5e9094df744248c0bee9e2e1",
     categoryName: "Agriculture & Animals' care",
     userId: "5e9046b052f75f19a56647b2",
-    title: "I can walk with dog",
-    description: "I'm can with someone dogs",
+    title: "Need someone to walk my dog",
+    description: "Hello, I need someone that can walk my dog for me. I am 70 years old, and I have issues with walking long distances, and I would need someone that can walk my dog 3 times a day.\n",
     kind: "need",
+    image: dogImg,
     estimatedQuantity: {
       value: 10,
       measurements: "days",
@@ -84,11 +109,12 @@ const initialOffer = [
   {
     generalType: "time",
     categoryId: "5e9094df744248c0bee9e2e1",
-    categoryName: "Agriculture & Animals' care",
+    categoryName: "Groceries Help",
     userId: "5e9046b052f75f19a56647b2",
-    title: "I can walk with dog",
-    description: "I'm can with someone dogs",
+    title: "Help me to get the groceries ",
+    description: "I have been tested with the virus, and I have been tested positive for the virus. I am a single woman living at home, and I cannot go to the supermarket anymore. Could someone help me get the groceries?",
     kind: "need",
+    image: groceriesImg,
     estimatedQuantity: {
       value: 10,
       measurements: "days",
@@ -97,24 +123,12 @@ const initialOffer = [
   {
     generalType: "time",
     categoryId: "5e9094df744248c0bee9e2e1",
-    categoryName: "Agriculture & Animals' care",
+    categoryName: "Looking for LGBT+ mentor",
     userId: "5e9046b052f75f19a56647b2",
-    title: "I can walk with dog",
-    description: "I'm can with someone dogs",
+    title: "Looking for LGBT+ mentor",
+    description: "I am a LGBT mentor that is looking for people to support. Please reach out to me if you need help",
     kind: "need",
-    estimatedQuantity: {
-      value: 10,
-      measurements: "days",
-    },
-  },
-  {
-    generalType: "time",
-    categoryId: "5e9094df744248c0bee9e2e1",
-    categoryName: "Agriculture & Animals' care",
-    userId: "5e9046b052f75f19a56647b2",
-    title: "I can walk with dog",
-    description: "I'm can with someone dogs",
-    kind: "need",
+    image: lgbtImg,
     estimatedQuantity: {
       value: 10,
       measurements: "days",
@@ -122,15 +136,16 @@ const initialOffer = [
   },
 ];
 
-const initialNeeds = [
+const initialOffer = [
   {
     generalType: "time",
     categoryId: "5e9094df744248c0bee9e2e1",
-    categoryName: "Mentoring & Teaching->Art",
+    categoryName: "Food",
     userId: "5e9046b052f75f19a56647b2",
-    title: "I need help with my dog",
-    description: "I need teacher for learning art",
-    kind: "need",
+    title: "I am offering free meals",
+    description: "I am offering free meals to those who need it the most. Vegetarian and vegan options available, I am also able to deliver it for free to your door",
+    kind: "offer",
+    image: foodImg,
     estimatedQuantity: {
       value: 3,
       measurements: "week",
@@ -139,37 +154,40 @@ const initialNeeds = [
   {
     generalType: "time",
     categoryId: "5e9094df744248c0bee9e2e1",
-    categoryName: "Mentoring & Teaching->Art",
+    categoryName: "Toys",
     userId: "5e9046b052f75f19a56647b2",
-    title: "I need help with my dog",
-    description: "I need teacher for learning art",
-    kind: "need",
+    title: "Little dog toys",
+    description: "In my garage, I found this sweet little dog plushie. I don't use it anymore, and I think I can make someone happy with it. Feel free to ping me.",
+    kind: "offer",
+    image: dogTollImg,
     estimatedQuantity: {
       value: 3,
       measurements: "week",
     },
   },
   {
-    generalType: "time",
+    generalType: "material",
     categoryId: "5e9094df744248c0bee9e2e1",
-    categoryName: "Mentoring & Teaching->Art",
+    categoryName: "Clothes",
     userId: "5e9046b052f75f19a56647b2",
-    title: "I need help with my dog",
-    description: "I need teacher for learning art",
-    kind: "need",
+    title: "Free babies closes",
+    description: "My baby cannot wear these clothing anymore, so I am giving these away for free. Clothing appropriate for 1-3 year old.\n",
+    kind: "offer",
+    image: closesImg,
     estimatedQuantity: {
       value: 3,
-      measurements: "week",
+      measurements: "items",
     },
   },
   {
     generalType: "time",
     categoryId: "5e9094df744248c0bee9e2e1",
-    categoryName: "Mentoring & Teaching->Art",
+    categoryName: "Mentoring & Teaching",
     userId: "5e9046b052f75f19a56647b2",
-    title: "I need help with my dog",
-    description: "I need teacher for learning art",
-    kind: "need",
+    title: "I need coach in mountaineering",
+    description: "I need a coach in mountaineering",
+    kind: "offer",
+    image: "mountainImg",
     estimatedQuantity: {
       value: 3,
       measurements: "week",
