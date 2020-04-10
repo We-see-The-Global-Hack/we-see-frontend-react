@@ -1,0 +1,16 @@
+.back_link{
+  color: black;
+  display: flex;
+  align-items: center;
+  font-size: 1.4em;
+  text-decoration: none !important;
+}
+.globalOffers_filter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0 20px;
+  margin-bottom: 40px;
+  border-bottom: 3px solid rgba(#333, 0.3);
+  border-radius: 5px;
+}
