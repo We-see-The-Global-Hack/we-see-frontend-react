@@ -8,6 +8,7 @@ import { Formik } from "formik";
 import RadioButton from "components/RadioButton";
 import Multiselect from "components/Multiselect";
 import InputUploader from "components/UploaderInput";
+import DatePicker from "components/DatePicker"
 // mu
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -145,13 +146,9 @@ const Profile = () => {
         </Grid>
         <Grid style={styles.gridItem} item sm={5}>
           <Field
-            variant="outlined"
-            fullWidth
             name="dob"
+            component={DatePicker}
             label="Dob"
-            type="text"
-            id="dob"
-            autoComplete="dob"
           />
         </Grid>
         <Grid style={styles.gridItem} item sm={5}>
