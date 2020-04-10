@@ -23,7 +23,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 // utils
-import {signInSchema} from "utils/valiadate"
+import {signInSchema} from "utils/validate"
 
 
 function Copyright() {
