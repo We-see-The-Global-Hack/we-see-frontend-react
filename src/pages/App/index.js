@@ -13,6 +13,8 @@ import history from 'libs/history';
 import Profile from 'pages/Profile';
 import Offer from "pages/Offers";
 import Needs from "pages/Needs";
+import CreateNeeds from "pages/CreateNeeds";
+import CreateOffers from "pages/CreateOffers";
 
 const theme = createMuiTheme({
   palette: {
@@ -61,6 +63,8 @@ function App() {
         <Route path={"/profile"} component={Profile} />
         <Route path={"/listings/offers"} component={Offer} />
         <Route path={"/listings/needs"} component={Needs} />
+        <Route path={"/listings/create/needs"} component={CreateNeeds} />
+        <Route path={"/listings/create/offers"} component={CreateOffers} />
         <Route path={"/listings"} component={Listings} />
         <Route path={"/search"} component={Search} />
         <Route path="/" component={MainLayout} />

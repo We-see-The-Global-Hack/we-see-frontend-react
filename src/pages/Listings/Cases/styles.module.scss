@@ -11,6 +11,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 25px;
+  margin-bottom: 30px;
 }
 .cases_link{
   text-decoration: none;

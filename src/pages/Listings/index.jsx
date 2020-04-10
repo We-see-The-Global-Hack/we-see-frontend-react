@@ -4,6 +4,8 @@ import Causes from "./Cases";
 import Inbox from "./Inbox";
 import api from "libs/apis";
 import { Container } from "@material-ui/core";
+// components
+import Button from "@material-ui/core/Button";
 
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
@@ -22,8 +24,8 @@ const Listings = () => {
       <Title text="Your Listings" />
       <div className={cn("listings")}>
         <div className={cn("listings_cases")}>
-          <Causes title="Offers" link="/listings/offers" data={initialOffer} />
-          <Causes title="Needs" link="/listings/needs" data={initialNeeds} />
+          <Causes isOffers title="Offers" link="/listings/offers" data={initialOffer} />
+          <Causes isNeeds title="Needs" link="/listings/needs" data={initialNeeds} />
           <Causes title="Your Matches" link="/listings" data={initialOffer} />
           <Causes
             title="Needs/Offers based on your interest"
