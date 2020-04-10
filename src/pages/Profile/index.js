@@ -21,10 +21,12 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Field from "components/Form/Field";
-import useFetchData from "hooks/useFetchData";
 import api from "libs/apis";
 import { profileSchema } from "utils/validate";
 import { causes, targetAudience } from './options'
+import useOnSubmit from 'hooks/useOnSubmit';
+import useAuth from 'hooks/useAuth';
+import useFetchData from 'hooks/useFetchData';
 
 const styles = {
   gridItem: { marginTop: "10px", marginBottom: "10px" }
@@ -44,9 +46,19 @@ const initialValues = {
 };
 
 const Profile = () => {
-  const onSubmit = useCallback(values => {
-    console.log("values", values);
-  }, []);
+  const { user } = useAuth();
+  
+  const onSubmit = useOnSubmit({
+    api: api.user.update,
+    params: { id: user.id },
+    serializer: values => ({ ...values, isActive: true }),
+  });
+  
+  const { resource } = useFetchData({
+    api: api.user.get,
+    initialParams: { id: user.id },
+    initialValues,
+  });
   
   const useStyles = makeStyles(theme => ({
     paper: {
@@ -164,7 +176,12 @@ const Profile = () => {
           />
         </Grid>
         <Grid style={styles.gridItem} item sm={5}>
-          <Multiselect name="targetAudience" label="Target audience" options={targetAudience} />
+          <Field
+            component={Multiselect}
+            name="targetAudience"
+            label="Target audience"
+            options={targetAudience}
+          />
         </Grid>
         <Grid style={styles.gridItem} item sm={5}>
           <Field
@@ -202,7 +219,8 @@ const Profile = () => {
           Profile
         </Typography>
         <Formik
-          initialValues={initialValues}
+          initialValues={resource}
+          enableReinitialize={true}
           onSubmit={onSubmit}
           validationSchema={profileSchema}
         >

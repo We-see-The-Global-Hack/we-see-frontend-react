@@ -10,7 +10,11 @@ const Api = {
     signUp: apiRequest('post', 'auth/signup'),
     checkUser: apiRequest('get', 'auth/check'),
     // checkUser: apiRequest('get', params => `auth/check/${params.id}`),
-  }
+  },
+  user: {
+    get: apiRequest('get', params => `users/${params.id}`),
+    update: apiRequest('patch', params => `users/${params.id}`),
+  },
 };
 
 export default Api;

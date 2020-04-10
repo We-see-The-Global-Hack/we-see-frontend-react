@@ -1,14 +1,35 @@
 // react
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Autocomplete } from "@material-ui/lab";
 import TextField from "@material-ui/core/TextField";
 
-const Multiselect = ({ name, label, options, field, form, ...rest }) => {
-  console.log('form', form, name);
+const Multiselect = ({ name, options, form, field, label, ...rest }) => {
+  const setInitial = useRef(false);
+  const [values, setValues] = useState([]);
   
   const onChange = useCallback((event, values) => {
-    form.setFieldValue(name, values);
-  }, [name]);
+    setValues(values);
+  }, [form, field]);
+  
+  useEffect(() => { // poka tak =)
+    if (field.value && field.value.length && !setInitial.current) {
+      setInitial.current = true;
+      setValues(field.value);
+    }
+  }, [field.value]);
+
+  useEffect(() => {
+    form.setFieldValue(field.name, values);
+  }, [values]);
+  
+  const renderInput = useCallback(props => (
+    <TextField
+      variant="standard"
+      label={label}
+      placeholder={name}
+      {...props }
+    />
+  ), [name]);
   
   return (
     <Autocomplete
@@ -18,15 +39,9 @@ const Multiselect = ({ name, label, options, field, form, ...rest }) => {
       options={options}
       getOptionLabel={val => val}
       onChange={onChange}
-      renderInput={({...params}) => {
-        return <TextField
-          {...params}
-          variant="standard"
-          label={label}
-          placeholder={name}
-          {...rest}
-        />
-      }}
+      value={values}
+      {...rest}
+      renderInput={renderInput}
     />
   );
 };
