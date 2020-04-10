@@ -1,8 +1,9 @@
 // mu
-import React, {memo, useCallback} from 'react';
+import React, { useCallback } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Field from 'components/Form/Field';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import MULink from '@material-ui/core/Link';
@@ -14,15 +15,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 //component
 import Link from "components/Link"
-import Field from 'components/Form/Field';
-import {Formik} from "formik";
-import {useDispatch} from "redux-react-hook";
-import {thunkSignIn} from "domain/env/effects";
-// utils
-import {signUpSchema} from "utils/validate"
-import useFetchData from "hooks/useFetchData";
-import api from "libs/apis";
 
+import api from 'libs/apis';
+import useOnSubmit from 'hooks/useOnSubmit';
+import { Formik } from 'formik';
+import {signUpSchema} from "utils/validate"
 
 function Copyright() {
   return (
@@ -57,19 +54,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const classes = useStyles();
+const mockedId = 1;
 
-const renderForm = () => {
-
-  return <form><Container component="main" maxWidth="xs">
-  <CssBaseline />
-  <div className={classes.paper}>
-    <Avatar className={classes.avatar}>
-      <LockOutlinedIcon />
-    </Avatar>
-    <Typography component="h1" variant="h5">
-      Sign up
-    </Typography>
+export default () => {
+  const classes = useStyles();
+  
+  const onSubmit = useOnSubmit({ api: api.auth.signUp, params: { id: mockedId }});
+  
+  const renderForm = useCallback(({ handleSubmit}) => (
     <form className={classes.form} noValidate>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
@@ -126,11 +118,12 @@ const renderForm = () => {
         </Grid>
       </Grid>
       <Button
-        type="submit"
+        type="button"
         fullWidth
         variant="contained"
         color="primary"
         className={classes.submit}
+        onClick={handleSubmit}
       >
         Sign Up
       </Button>
@@ -142,35 +135,29 @@ const renderForm = () => {
         </Grid>
       </Grid>
     </form>
-  </div>
-  <Box mt={5}>
-    <Copyright />
-  </Box>
-  </Container></form>
-}
-
-const SignUp = () => {
-  const dispatch = useDispatch();
-  const onSubmit = useCallback(values => {
-    console.log('values', values);
-    // dispatch(thunkSignIn(values));
-  }, []);
-
-  const { resource, fetchResource } = useFetchData({
-    api: api.todos,
-    initialValues: {},
-  });
-
+  ), []);
 
   return (
-    <Formik
-      initialValues={{ name: '' }}
-      onSubmit={onSubmit}
-      validationSchema={signUpSchema}
-    >
-      {renderForm}
-    </Formik>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <Formik
+          initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
+          onSubmit={onSubmit}
+          validationSchema={signUpSchema}
+        >
+          {renderForm}
+        </Formik>
+      </div>
+      <Box mt={5}>
+        <Copyright />
+      </Box>
+    </Container>
   );
-};
-
-  export default memo(SignUp);
+}

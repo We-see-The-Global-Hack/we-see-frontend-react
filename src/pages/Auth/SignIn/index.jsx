@@ -135,21 +135,15 @@ const SignIn = () => {
     console.log('values', values);
     dispatch(thunkSignIn(values));
   }, []);
-
-  const { resource, fetchResource } = useFetchData({
-    api: api.todos,
-    initialValues: {},
-  });
-
-
+  
   return (
-      <Formik
-        initialValues={{ name: '' }}
-        onSubmit={onSubmit}
-        validationSchema={signInSchema}
-      >
-        {renderForm}
-      </Formik>
+    <Formik
+      initialValues={{ name: '' }}
+      onSubmit={onSubmit}
+      validationSchema={signInSchema}
+    >
+      {renderForm}
+    </Formik>
   );
 };
 

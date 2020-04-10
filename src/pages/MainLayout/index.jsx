@@ -14,7 +14,7 @@ const MainLayout = () => {
   
   return (
     <div>
-      MainLayout
+      Landing here...
       <div>
         {
           isAuthorized
