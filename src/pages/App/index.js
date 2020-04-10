@@ -10,6 +10,7 @@ import { green, teal } from '@material-ui/core/colors';
 import useFetchData from 'hooks/useFetchData';
 import api from 'libs/apis';
 import history from 'libs/history';
+import Profile from 'pages/Profile';
 
 const theme = createMuiTheme({
   palette: {
@@ -55,6 +56,7 @@ function App() {
         {!isAuthorized && (
           <Route path={["/sign-in", "/sign-up"]} component={Auth} />
         )}
+        <Route path={"/profile"} component={Profile} />
         <Route path={"/listings"} component={Listings} />
         <Route path={"/search"} component={Search} />
         <Route path="/" component={MainLayout} />

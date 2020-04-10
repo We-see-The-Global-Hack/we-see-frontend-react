@@ -10,16 +10,19 @@ const FormTextInput = ({
  type,
  ...rest
 }) =>
-  <div className={className}>
+  {
+    const isError = Boolean(touched[field.name] && errors[field.name]);
+
+    return <div className={className}>
       <InputComponent
         {...field}
         placeholder={placeholder}
         error={Boolean(touched[field.name] && errors[field.name])}
-        helperText={touched && errors && errors[field.name]}
+        helperText={isError && errors[field.name]}
         type={type}
         {...rest}
       />
-  </div>
+  </div>}
 
 
 export default memo(FormTextInput);

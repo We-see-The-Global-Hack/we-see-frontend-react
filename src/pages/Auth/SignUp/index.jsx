@@ -64,7 +64,6 @@ const SignUp = () => {
   const classes = useStyles();
 
   const renderForm = useCallback(({ handleSubmit }) => (
-    <form>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -152,7 +151,6 @@ const SignUp = () => {
           <Copyright />
         </Box>
       </Container>
-    </form>
   ), [classes]);
   
   return (
