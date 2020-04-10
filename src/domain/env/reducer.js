@@ -4,11 +4,11 @@ import { SIGN_IN_REQUEST, SIGN_IN_SUCCESS, SIGN_IN_FAILED, LOGOUT_ACTION } from 
 
 function getInitialState() {
   const auth = cookies.get('auth');
-  const { tokens, user } = auth || { tokens: {}, user: {} };
+  const { token, user } = auth || { token: '', user: {} };
   const isAuthorized = Boolean(auth);
   return Immutable({
     isAuthorized,
-    tokens,
+    token,
     user,
   });
 }
@@ -31,7 +31,7 @@ export const reducer = (state = initialState, action) => {
       return state.merge(
         {
           isAuthorized: true,
-          tokens: action.payload.tokens,
+          token: action.payload.token,
           user: action.payload.user,
           error: false,
           loading: false,
@@ -51,7 +51,7 @@ export const reducer = (state = initialState, action) => {
       return state.merge(
         {
           isAuthorized: false,
-          tokens: {},
+          token: '',
           user: {},
           error: false,
           loading: false,

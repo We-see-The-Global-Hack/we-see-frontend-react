@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router";
 import MainLayout from "pages/MainLayout";
 import Auth from "pages/Auth";
@@ -6,8 +6,10 @@ import useAuth from "hooks/useAuth";
 import Listings from "pages/Listings";
 import Search from "pages/Search";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import {green,teal } from '@material-ui/core/colors';
-
+import { green, teal } from '@material-ui/core/colors';
+import useFetchData from 'hooks/useFetchData';
+import api from 'libs/apis';
+import history from 'libs/history';
 
 const theme = createMuiTheme({
   palette: {
@@ -21,9 +23,32 @@ const theme = createMuiTheme({
 
 function App() {
   const { isAuthorized } = useAuth();
-
-  console.log("isAuthorized", isAuthorized);
-
+  
+  const { fetchResource } = useFetchData({
+    api: api.auth.checkUser,
+    initialParams: {},
+    initialLoad: false,
+    initialValues: {},
+  });
+  
+  const checkUser = async () => {
+    if (isAuthorized) {
+      try {
+        const data = await fetchResource();
+        if (!data.user.isActive) {
+          history.push('/profile');
+        }
+      } catch (e) {
+        console.log('e', e);
+      }
+    }
+  };
+  
+  useEffect( () => {
+    checkUser();
+  }, [isAuthorized]);
+  
+  
   return (
     <ThemeProvider theme={theme}>
       <Switch>

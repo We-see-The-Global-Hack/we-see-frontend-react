@@ -16,12 +16,11 @@ import Container from "@material-ui/core/Container";
 import Link from "components/Link";
 import Field from "components/Form/Field";
 import { Formik } from "formik";
-import { useDispatch } from "redux-react-hook";
-import { thunkSignIn } from "domain/env/effects";
 // utils
 import { signUpSchema } from "utils/validate";
-import useFetchData from "hooks/useFetchData";
 import api from "libs/apis";
+import history from "libs/history";
+import useOnSubmit from 'hooks/useOnSubmit';
 
 function Copyright() {
   return (
@@ -36,8 +35,12 @@ function Copyright() {
   );
 }
 
-
-const RenderForm = () => {
+const SignUp = () => {
+  const onSubmit = useOnSubmit({
+    api: api.auth.signUp,
+    onSuccess: () => history.push('sign-in')
+  });
+  
   const useStyles = makeStyles(theme => ({
     paper: {
       marginTop: theme.spacing(8),
@@ -57,10 +60,10 @@ const RenderForm = () => {
       margin: theme.spacing(3, 0, 2)
     }
   }));
-
+  
   const classes = useStyles();
 
-  return (
+  const renderForm = useCallback(({ handleSubmit }) => (
     <form>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -129,11 +132,12 @@ const RenderForm = () => {
               </Grid>
             </Grid>
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={handleSubmit}
             >
               Sign Up
             </Button>
@@ -149,28 +153,15 @@ const RenderForm = () => {
         </Box>
       </Container>
     </form>
-  );
-};
-
-const SignUp = () => {
-  const dispatch = useDispatch();
-  const onSubmit = useCallback(values => {
-    console.log("values", values);
-    // dispatch(thunkSignIn(values));
-  }, []);
-
-  const { resource, fetchResource } = useFetchData({
-    api: api.todos,
-    initialValues: {}
-  });
-
+  ), [classes]);
+  
   return (
     <Formik
-      initialValues={{ name: "" }}
+      initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
       onSubmit={onSubmit}
       validationSchema={signUpSchema}
     >
-      <RenderForm />
+      {renderForm}
     </Formik>
   );
 };

@@ -15,7 +15,7 @@ export const envIsAuthorizedSelector = createSelector(
   peek('isAuthorized')
 );
 
-export const envTokensSelector = createSelector(
+export const envTokenSelector = createSelector(
   baseSelector,
-  peek('tokens')
+  peek('token')
 );

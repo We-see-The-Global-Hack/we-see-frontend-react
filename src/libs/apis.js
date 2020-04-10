@@ -6,8 +6,10 @@ const apiRequest = (method, url) => args =>
 const Api = {
   todos: apiRequest('get', 'todos/1'),
   auth: {
-    signIn: apiRequest('get', 'todos/1'),
-    signUp: apiRequest('post', 'todos/1'),
+    signIn: apiRequest('post', 'auth/login'),
+    signUp: apiRequest('post', 'auth/signup'),
+    checkUser: apiRequest('get', 'auth/check'),
+    // checkUser: apiRequest('get', params => `auth/check/${params.id}`),
   }
 };
 

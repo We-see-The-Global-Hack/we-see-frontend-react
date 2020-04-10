@@ -1,8 +1,6 @@
 // react
 import React, { useCallback, memo } from "react";
 import { Formik } from "formik";
-import api from "libs/apis";
-import useFetchData from "hooks/useFetchData";
 import { useDispatch } from "redux-react-hook";
 import { thunkSignIn } from "domain/env/effects";
 //components
@@ -37,9 +35,13 @@ function Copyright() {
   );
 }
 
-
-
-const RenderForm = ({ handleSubmit }) => {
+const SignIn = () => {
+  const dispatch = useDispatch();
+  const onSubmit = useCallback(values => {
+    console.log("values", values);
+    dispatch(thunkSignIn(values));
+  }, []);
+  
   const useStyles = makeStyles(theme => ({
     paper: {
       marginTop: theme.spacing(8),
@@ -59,9 +61,10 @@ const RenderForm = ({ handleSubmit }) => {
       margin: theme.spacing(3, 0, 2)
     }
   }));
-
+  
   const classes = useStyles();
-  return (
+  
+  const renderForm = useCallback(({ handleSubmit }) => (
     <form>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -100,7 +103,7 @@ const RenderForm = ({ handleSubmit }) => {
               label="Remember me"
             />
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               color="primary"
@@ -126,28 +129,15 @@ const RenderForm = ({ handleSubmit }) => {
         </Box>
       </Container>
     </form>
-  );
-};
-
-const SignIn = () => {
-  const dispatch = useDispatch();
-  const onSubmit = useCallback(values => {
-    console.log("values", values);
-    dispatch(thunkSignIn(values));
-  }, []);
-
-  const { resource, fetchResource } = useFetchData({
-    api: api.todos,
-    initialValues: {}
-  });
+  ), [classes]);
 
   return (
     <Formik
-      initialValues={{ name: "" }}
+      initialValues={{ email: '', password: '' }}
       onSubmit={onSubmit}
       validationSchema={signInSchema}
     >
-      <RenderForm />
+      {renderForm}
     </Formik>
   );
 };
