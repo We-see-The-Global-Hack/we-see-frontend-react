@@ -32,7 +32,7 @@ const RadioButton = ({
       <FormLabel component="legend">Gender</FormLabel>
       <RadioGroup row aria-label="gender" {...field} {...props} name={name} onChange={onChange} value={values}>
         {options.map(option => (
-          <FormControlLabel value={option} control={<Radio />} label={option}  />
+          <FormControlLabel value={option.name} control={<Radio />} label={option.label}  />
         ))}
       </RadioGroup>
     </FormControl>

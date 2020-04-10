@@ -28,4 +28,4 @@ export const targetAudience = [
   "Other Nonprofits and social business"
 ];
 
-export const gender = ["male", "female", "other"]
+export const gender = [{label: "male", name: "M"}, {label: "female", name: "F"}, {label: "other", name: "Another"}]
