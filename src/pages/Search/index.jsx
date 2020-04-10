@@ -1,7 +1,7 @@
 import React from "react";
 // components
 import Title from "components/Title";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Container } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import User from "./User";
 // styles
@@ -15,7 +15,7 @@ const cn = classNames.bind(styles);
 
 const Search = () => {
   return (
-    <div>
+    <Container maxWidth='lg'>
       <Title text="Search" />
       <div className={cn("search_filters")}>
         <div className={cn("search_filters-selectors")}>
@@ -94,7 +94,7 @@ const Search = () => {
           />
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
