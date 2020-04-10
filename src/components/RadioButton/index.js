@@ -1,15 +1,39 @@
 // react
-import React from 'react';
+import React, {useCallback, useEffect, useRef, useState} from "react";
 // mu
-import {FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from "@material-ui/core";
+import {
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio
+} from "@material-ui/core";
 
-const RadioButton = ({value, handleChange}) => {
+const RadioButton = ({
+  field,
+  name,
+  options,
+  form,
+  ...props
+}) => {
+  const [values, setValues] = useState("");
+
+  const onChange = useCallback(({target}) => {
+    const {value} = target
+    setValues(value);
+  }, [form, field])
+
+  useEffect(() => {
+    form.setFieldValue(field.name, values);
+  }, [values]);
+
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">Gender</FormLabel>
-      <RadioGroup row aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-        <FormControlLabel value="female" control={<Radio />} label="Female" />
-        <FormControlLabel value="male" control={<Radio />} label="Male" />
+      <RadioGroup row aria-label="gender" {...field} {...props} name={name} onChange={onChange} value={values}>
+        {options.map(option => (
+          <FormControlLabel value={option} control={<Radio />} label={option}  />
+        ))}
       </RadioGroup>
     </FormControl>
   );

@@ -27,3 +27,5 @@ export const targetAudience = [
   "Animals",
   "Other Nonprofits and social business"
 ];
+
+export const gender = ["male", "female", "other"]

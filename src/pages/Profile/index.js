@@ -11,9 +11,6 @@ import Multiselect from "components/Multiselect";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import MULink from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -23,10 +20,11 @@ import Container from "@material-ui/core/Container";
 import Field from "components/Form/Field";
 import api from "libs/apis";
 import { profileSchema } from "utils/validate";
-import { causes, targetAudience } from './options'
 import useOnSubmit from 'hooks/useOnSubmit';
 import useAuth from 'hooks/useAuth';
 import useFetchData from 'hooks/useFetchData';
+// options
+import { causes, targetAudience, gender } from './options'
 
 const styles = {
   gridItem: { marginTop: "10px", marginBottom: "10px" }
@@ -40,6 +38,7 @@ const initialValues = {
   dob: '',
   email: '',
   about_me: '',
+  gender: "",
   causes: [],
   targetAudience: [],
   values: '',
@@ -131,7 +130,7 @@ const Profile = () => {
           />
         </Grid>
         <Grid style={styles.gridItem} item sm={5}>
-          <RadioButton />
+          <Field component={RadioButton} name="gender" options={gender} />
         </Grid>
         <Grid style={styles.gridItem} item sm={5}>
           <Field
@@ -198,7 +197,6 @@ const Profile = () => {
       </Grid>
       <Button
         type="submit"
-        fullWidth
         variant="contained"
         color="primary"
         className={classes.submit}
