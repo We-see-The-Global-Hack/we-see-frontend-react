@@ -12,7 +12,7 @@ import history from "libs/history";
 import useAuth from "hooks/useAuth";
 import { thunkLogOut } from "domain/env/effects";
 import { useDispatch } from "redux-react-hook";
-import logoImage from 'assets/img/logoImage.png'
+import logoImage from "assets/img/logoImage.png";
 // styles
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
@@ -56,7 +56,7 @@ const ApplicationBar = () => {
     <>
       <AppBar position="static">
         <div className={cn("appBar")}>
-          <img src={logoImage} alt='' className={cn('appBar_logo')}/>
+          <img src={logoImage} alt="" className={cn("appBar_logo")} />
           <div className={cn("appBar_navbar")}>
             <Tabs
               value={value}
@@ -78,7 +78,7 @@ const ApplicationBar = () => {
                     />
                     <Menu {...bindMenu(popupState)}>
                       <MenuItem
-                          {...a11yProps(1)}
+                        {...a11yProps(1)}
                         onClick={() => {
                           popupState.close();
                           handleChange(1, 1);
@@ -88,7 +88,7 @@ const ApplicationBar = () => {
                         Search User
                       </MenuItem>
                       <MenuItem
-                          {...a11yProps(1)}
+                        {...a11yProps(1)}
                         onClick={() => {
                           popupState.close();
                           handleChange(1, 1);
@@ -98,7 +98,7 @@ const ApplicationBar = () => {
                         Search Offers
                       </MenuItem>
                       <MenuItem
-                          {...a11yProps(1)}
+                        {...a11yProps(1)}
                         onClick={() => {
                           popupState.close();
                           handleChange(1, 1);
@@ -126,26 +126,28 @@ const ApplicationBar = () => {
                   </IconButton>
 
                   <Menu {...bindMenu(popupState)}>
-                    <Typography className={cn("appBar_user")}>
-                      Hi, {`${user.firstName} ${user.lastName}`}
-                    </Typography>
-                    <MenuItem
-                      onClick={() => {
-                        popupState.close();
-                        history.push("/profile");
-                      }}
-                    >
-                      My profile
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        popupState.close();
-                        logout();
-                      }}
-                      className={cn("appBar_signOut")}
-                    >
-                      logout
-                    </MenuItem>
+                    <div style={{ padding: "10px 15px" }}>
+                      <Typography className={cn("appBar_user")}>
+                        Hi, {`${user.firstName} ${user.lastName}`}
+                      </Typography>
+                      <MenuItem
+                        onClick={() => {
+                          popupState.close();
+                          history.push("/profile");
+                        }}
+                      >
+                        My profile
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          popupState.close();
+                          logout();
+                        }}
+                        className={cn("appBar_signOut")}
+                      >
+                        Logout
+                      </MenuItem>
+                    </div>
                   </Menu>
                 </React.Fragment>
               )}
