@@ -129,28 +129,26 @@ const ApplicationBar = () => {
                   </IconButton>
 
                   <Menu {...bindMenu(popupState)}>
-                    <div style={{ padding: "10px 15px" }}>
-                      <Typography className={cn("appBar_user")}>
-                        Hi, {`${user.firstName} ${user.lastName}`}
-                      </Typography>
-                      <MenuItem
-                        onClick={() => {
-                          popupState.close();
-                          history.push("/profile");
-                        }}
-                      >
-                        My profile
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => {
-                          popupState.close();
-                          logout();
-                        }}
-                        className={cn("appBar_signOut")}
-                      >
-                        Logout
-                      </MenuItem>
-                    </div>
+                    <Typography className={cn("appBar_user")}>
+                      Hi, {`${user.firstName} ${user.lastName}`}
+                    </Typography>
+                    <MenuItem
+                      onClick={() => {
+                        popupState.close();
+                        history.push("/profile");
+                      }}
+                    >
+                      My profile
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        popupState.close();
+                        logout();
+                      }}
+                      className={cn("appBar_signOut")}
+                    >
+                      logout
+                    </MenuItem>
                   </Menu>
                 </React.Fragment>
               )}
