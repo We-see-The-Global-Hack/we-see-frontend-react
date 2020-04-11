@@ -57,9 +57,9 @@ const ApplicationBar = () => {
     <>
       <AppBar position="static">
         <div className={cn("appBar")}>
-          {/*<Link to="/">*/}
-            <img src={logoImage} alt='' className={cn('appBar_logo')}/>
-          {/*</Link>*/}
+          <Link to="/" style={{ cursor: "pointer" }}>
+            <img src={logoImage} alt="" className={cn("appBar_logo")} />
+          </Link>
           <div className={cn("appBar_navbar")}>
             <Tabs
               value={value}
@@ -67,53 +67,30 @@ const ApplicationBar = () => {
               aria-label="simple tabs example"
             >
               <Tab
-                label="My listings"
+                label="Home"
                 {...a11yProps(0)}
-                onClick={() => history.push("/listings")}
+                onClick={() => history.push("/")}
               />
-              <PopupState variant="popover" popupId="demo-popup-menu">
-                {(popupState) => (
-                  <React.Fragment>
-                    <Tab
-                      label="Search"
-                      {...a11yProps(1)}
-                      {...bindTrigger(popupState)}
-                    />
-                    <Menu {...bindMenu(popupState)}>
-                      <MenuItem
-                        {...a11yProps(1)}
-                        onClick={() => {
-                          popupState.close();
-                          handleChange(1, 1);
-                          history.push("/search/user");
-                        }}
-                      >
-                        Search User
-                      </MenuItem>
-                      <MenuItem
-                        {...a11yProps(1)}
-                        onClick={() => {
-                          popupState.close();
-                          handleChange(1, 1);
-                          history.push("/search/offers");
-                        }}
-                      >
-                        Search Offers
-                      </MenuItem>
-                      <MenuItem
-                        {...a11yProps(1)}
-                        onClick={() => {
-                          popupState.close();
-                          handleChange(1, 1);
-                          history.push("/search/needs");
-                        }}
-                      >
-                        Search Needs
-                      </MenuItem>
-                    </Menu>
-                  </React.Fragment>
-                )}
-              </PopupState>
+              <Tab
+                  label="Needs"
+                  {...a11yProps(0)}
+                  onClick={() => history.push("/search/needs")}
+              />
+              <Tab
+                  label="Offers"
+                  {...a11yProps(0)}
+                  onClick={() => history.push("/search/offers")}
+              />
+              <Tab
+                  label="Community"
+                  {...a11yProps(0)}
+                  onClick={() => history.push("/search/user")}
+              />
+              <Tab
+                  label="About"
+                  {...a11yProps(0)}
+                  onClick={() => history.push("/")}
+              />
             </Tabs>
             <PopupState variant="popover" popupId="demo-popup-menu">
               {(popupState) => (
@@ -139,7 +116,15 @@ const ApplicationBar = () => {
                           history.push("/profile");
                         }}
                       >
-                        My profile
+                        My Profile
+                      </MenuItem>
+                      <MenuItem
+                          onClick={() => {
+                            popupState.close();
+                            history.push("/listing");
+                          }}
+                      >
+                        My Listing
                       </MenuItem>
                       <MenuItem
                         onClick={() => {
