@@ -86,7 +86,6 @@ const SignIn = () => {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
             />
             <Field
               variant="outlined"
