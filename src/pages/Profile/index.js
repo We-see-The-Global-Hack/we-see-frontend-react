@@ -28,7 +28,6 @@ import useAuth from "hooks/useAuth";
 import useFetchData from "hooks/useFetchData";
 // options
 import { causes, targetAudience, gender } from "./options";
-import ApplicationBar from "components/AppBar";
 
 const styles = {
   gridItem: { marginTop: "10px", marginBottom: "10px" },
@@ -217,7 +216,6 @@ const Profile = () => {
   return (
     <Container component="main" maxWidth="lg">
       <CssBaseline />
-      <ApplicationBar />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />

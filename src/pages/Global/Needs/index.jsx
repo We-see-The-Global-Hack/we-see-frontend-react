@@ -8,7 +8,6 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import useOnFilter from 'pages/Global/useOnFilter';
 import Filters from 'pages/Global/templates/Filters'
-import ApplicationBar from "components/AppBar";
 
 const cn = classNames.bind(styles);
 
@@ -17,7 +16,6 @@ const GlobalNeeds = () => {
   
   return (
     <Container maxWidth="lg">
-      <ApplicationBar />
 
       <Title text="Search Needs" />
       <div className={cn("globalNeeds_filter")}>

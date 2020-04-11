@@ -10,3 +10,17 @@
 .appBar_menu{
   position: relative;
 }
+.appBar_navbar{
+  display: flex;
+  align-items: center;
+}
+.appBar_user{
+  font-size: 1em;
+  padding: 0 16px;
+  border-bottom: 2px solid rgba(#333, 0.2);
+}
+.appBar_signOut{
+  background: #c9485d !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+}

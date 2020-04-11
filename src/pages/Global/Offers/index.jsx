@@ -8,7 +8,6 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import Filters from "pages/Global/templates/Filters";
 import useOnFilter from "pages/Global/useOnFilter";
-import ApplicationBar from "components/AppBar";
 
 const cn = classNames.bind(styles);
 
@@ -19,7 +18,6 @@ const GlobalOffers = () => {
 
   return (
     <Container maxWidth="lg">
-      <ApplicationBar />
       <Title text="Search Offer" />
       <div className={cn("globalOffers_filter")}>
         <Filters

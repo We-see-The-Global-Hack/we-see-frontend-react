@@ -13,7 +13,6 @@ import avatarImage1 from "assets/img/avatar.jpg";
 import get from "lodash.get";
 import useFetchData from "hooks/useFetchData";
 import api from "libs/apis";
-import ApplicationBar from "components/AppBar";
 
 const cn = classNames.bind(styles);
 
@@ -48,7 +47,6 @@ const Search = () => {
 
   return (
     <Container maxWidth="lg">
-      <ApplicationBar />
       <Title text="Search User" />
       <div className={cn("search_filters")}>
         <div className={cn("search_filters-selectors")}>

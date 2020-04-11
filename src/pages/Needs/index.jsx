@@ -3,12 +3,10 @@ import { Container } from "@material-ui/core";
 // components
 import Title from "components/Title";
 import Thing from "components/Thing";
-import ApplicationBar from "components/AppBar";
 
 const Needs = () => {
   return (
     <Container maxWidth="lg">
-      <ApplicationBar />
       <Title text="My Needs" />
       <div>
         {initialNeeds.map((item, index) => (
