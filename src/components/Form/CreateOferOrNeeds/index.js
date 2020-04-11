@@ -1,5 +1,4 @@
 // react
-// react
 import React, { useCallback, memo } from "react";
 import { Formik } from "formik";
 //components
@@ -28,15 +27,13 @@ function Copyright() {
       {"Copyright © "}
       <MULink color="inherit" href="#">
         We see
-      </MULink>{" "}
+      </MULink>
       {new Date().getFullYear()}
-      {"."}
     </Typography>
   );
 }
 
 const CreateOffersOrNeed = ({ formName }) => {
-  // TODO: add kind to formValues & dropdowns
   const onSubmit = useOnSubmit({
     api: api.userListings.create,
   });
@@ -53,7 +50,7 @@ const CreateOffersOrNeed = ({ formName }) => {
       backgroundColor: theme.palette.secondary.main
     },
     form: {
-      width: "100%", // Fix IE 11 issue.
+      width: "100%",
       marginTop: theme.spacing(1)
     },
     submit: {
@@ -62,6 +59,16 @@ const CreateOffersOrNeed = ({ formName }) => {
   }));
 
   const classes = useStyles();
+  const kind = formName.includes("need")? "need": "offer"
+
+  const initialValues = {
+    title: "",
+    description: "",
+    generalType: "",
+    estimatedQuantity: {measurements: "", value: ""},
+    kind: kind
+  };
+
 
   const renderForm = useCallback(
     ({ handleSubmit }) => (
@@ -97,6 +104,8 @@ const CreateOffersOrNeed = ({ formName }) => {
             />
             <Field
               name="generalType"
+              required
+              validate={(value) => { if (!value) return "Required" }}
               component={Select}
               options={select}
               label="General type"
@@ -128,9 +137,8 @@ const CreateOffersOrNeed = ({ formName }) => {
 
   return (
     <Formik
-      initialValues={{}}
+      initialValues={initialValues}
       onSubmit={onSubmit}
-      // validationSchema={signInSchema}
     >
       {renderForm}
     </Formik>
