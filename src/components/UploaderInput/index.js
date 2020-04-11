@@ -4,7 +4,7 @@ import { Avatar } from "@material-ui/core";
 // hooks
 import useFirebase from "hooks/useFirebase";
 import useAuth from "hooks/useAuth";
-git
+
 const InputUploader = ({ field, name, options, form, ...props }) => {
   const [uri, setUri] = useState("");
 
