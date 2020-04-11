@@ -16,8 +16,15 @@
 .listings_btn {
   display: flex;
   justify-content: space-between;
+  max-width: 300px;
 }
 
 .listings_link {
   text-decoration: none !important;
+  margin: 0 5px;
+}
+.auth_search{
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 40px;
 }
