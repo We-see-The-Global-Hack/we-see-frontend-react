@@ -20,6 +20,7 @@ import { select } from "components/Form/CreateOferOrNeeds/options";
 import useOnSubmit from "hooks/useOnSubmit";
 // api
 import api from "libs/apis"
+import history from "libs/history"
 
 function Copyright() {
   return (
@@ -36,6 +37,7 @@ function Copyright() {
 const CreateOffersOrNeed = ({ formName }) => {
   const onSubmit = useOnSubmit({
     api: api.userListings.create,
+    onSuccess: () => history.go(-1)
   });
 
   const useStyles = makeStyles(theme => ({
@@ -63,13 +65,13 @@ const CreateOffersOrNeed = ({ formName }) => {
 
   const initialValues = {
     title: "",
+    categoryName: "",
     description: "",
     generalType: "",
     estimatedQuantity: {measurements: "", value: ""},
     kind: kind
   };
-
-
+  
   const renderForm = useCallback(
     ({ handleSubmit }) => (
       <Container component="main" maxWidth="xs">
@@ -90,6 +92,16 @@ const CreateOffersOrNeed = ({ formName }) => {
               label="Title"
               name="title"
               autoComplete="title"
+            />
+            <Field
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="categoryName"
+              label="Category Name"
+              placeholder="Category Name"
+              name="categoryName"
+              autoComplete="categoryName"
             />
             <Field
               rows={4}

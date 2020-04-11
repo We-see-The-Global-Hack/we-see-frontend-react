@@ -17,7 +17,7 @@ const GlobalNeeds = () => {
   return (
     <Container maxWidth="lg">
 
-      <Title text="Search Needs" />
+      <Title text="Needs" />
       <div className={cn("globalNeeds_filter")}>
         <Filters changeText={changeText} filters={filters} setFilters={setFilters} />
         <Button variant="contained" color="primary" onClick={search}>

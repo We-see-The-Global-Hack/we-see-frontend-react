@@ -18,7 +18,7 @@ const GlobalOffers = () => {
 
   return (
     <Container maxWidth="lg">
-      <Title text="Search Offer" />
+      <Title text="Offers" />
       <div className={cn("globalOffers_filter")}>
         <Filters
           changeText={changeText}

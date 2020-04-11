@@ -47,7 +47,7 @@ const Search = () => {
 
   return (
     <Container maxWidth="lg">
-      <Title text="Search User" />
+      <Title text="Community" />
       <div className={cn("search_filters")}>
         <div className={cn("search_filters-selectors")}>
           <Autocomplete

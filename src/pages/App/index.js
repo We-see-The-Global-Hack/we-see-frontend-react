@@ -80,6 +80,9 @@ function App() {
           </>
         ) : (
           <Switch>
+            <Route path={"/search/offers"} component={GlobalOffer} />
+            <Route path={"/search/needs"} component={GlobalNeeds} />
+            <Route path={"/search/user"} component={Search} />
             <Route path={["/sign-in", "/sign-up"]} component={Auth} />
             <Redirect to={"/sign-in"} />
           </Switch>

@@ -4,7 +4,8 @@ import Causes from "./Cases";
 import Inbox from "./Inbox";
 import api from "libs/apis";
 // components
-import { Container } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { Container, Button } from "@material-ui/core";
 
 import couchImg from "assets/img/listings/image.png";
 import lgbtImg from "assets/img/listings/image (1).png";
@@ -33,15 +34,8 @@ const Listings = () => {
       <Title text="My Listings" />
       <div className={cn("listings")}>
         <div className={cn("listings_cases")}>
-          <Causes isOffers title="Offers" link="/listings/offers" data={initialOffer} />
-          <Causes isNeeds title="Needs" link="/listings/needs" data={initialNeeds} />
-          <Causes title="Your Matches" link="/listings" data={initialOffer} />
-          <Causes
-            title="My Offers"
-            link="/listings/offers"
-            data={initialOffer}
-          />
-          <Causes title="My Needs" link="/listings/needs" data={initialNeeds} />
+          <Causes isOffers title="My Offers" link="/listings/offers" data={initialOffer} />
+          <Causes isNeeds title="My Needs" link="/listings/needs" data={initialNeeds} />
           <Causes title="My Matches" link="/listings" data={initialOffer} />
           <Causes
             title="Needs/Offers based on your interest"
@@ -50,6 +44,18 @@ const Listings = () => {
           />
         </div>
         <div>
+          <div className={cn("listings_btn")}>
+            <Link to="/search/offers" className={cn("listings_link")}>
+              <Button color="primary" variant="contained">
+                Offers
+              </Button>
+            </Link>
+            <Link to="/search/needs" className={cn("listings_link")}>
+              <Button color="primary" variant="contained">
+                Needs
+              </Button>
+            </Link>
+          </div>
           <Inbox />
         </div>
       </div>

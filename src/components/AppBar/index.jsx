@@ -18,6 +18,7 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import IconButton from "@material-ui/core/IconButton";
 import { AccountCircle } from "@material-ui/icons";
+import Link from "components/Link";
 
 const cn = classNames.bind(styles);
 
@@ -56,7 +57,9 @@ const ApplicationBar = () => {
     <>
       <AppBar position="static">
         <div className={cn("appBar")}>
-          <img src={logoImage} alt="" className={cn("appBar_logo")} />
+          {/*<Link to="/">*/}
+            <img src={logoImage} alt='' className={cn('appBar_logo')}/>
+          {/*</Link>*/}
           <div className={cn("appBar_navbar")}>
             <Tabs
               value={value}

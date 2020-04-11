@@ -22,6 +22,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Field from "components/Form/Field";
 
 import api from "libs/apis";
+import history from "libs/history";
 import { profileSchema } from "utils/validate";
 import useOnSubmit from "hooks/useOnSubmit";
 import useAuth from "hooks/useAuth";
@@ -55,6 +56,7 @@ const Profile = () => {
     api: api.user.update,
     params: { id: user.id },
     serializer: (values) => ({ ...values, isActive: true }),
+    onSuccess: () => history.push('/listings')
   });
 
   const { resource } = useFetchData({
