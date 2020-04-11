@@ -12,6 +12,7 @@ import history from "libs/history";
 import useAuth from "hooks/useAuth";
 import { thunkLogOut } from "domain/env/effects";
 import { useDispatch } from "redux-react-hook";
+import logoImage from 'assets/img/logoImage.png'
 // styles
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
@@ -55,9 +56,7 @@ const ApplicationBar = () => {
     <>
       <AppBar position="static">
         <div className={cn("appBar")}>
-          <Typography className={cn("appBar_title")} variant="h5">
-            WeSee
-          </Typography>
+          <img src={logoImage} alt='' className={cn('appBar_logo')}/>
           <div className={cn("appBar_navbar")}>
             <Tabs
               value={value}
