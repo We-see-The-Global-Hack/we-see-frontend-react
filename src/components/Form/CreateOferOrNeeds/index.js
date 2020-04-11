@@ -2,8 +2,6 @@
 // react
 import React, { useCallback, memo } from "react";
 import { Formik } from "formik";
-import { useDispatch } from "redux-react-hook";
-import { thunkSignIn } from "domain/env/effects";
 //components
 import Field from "components/Form/Field";
 import Select from "components/Select";
@@ -20,6 +18,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 // options
 import { select } from "components/Form/CreateOferOrNeeds/options";
+import useOnSubmit from "hooks/useOnSubmit";
+// api
+import api from "libs/apis"
 
 function Copyright() {
   return (
@@ -35,11 +36,10 @@ function Copyright() {
 }
 
 const CreateOffersOrNeed = ({ formName }) => {
-  const dispatch = useDispatch();
-  const onSubmit = useCallback(values => {
-    console.log("values", values);
-    dispatch(thunkSignIn(values));
-  }, []);
+  const onSubmit = useOnSubmit({
+    api: api.userListings.create,
+    onSuccess: () => console.log("Gavno")
+  })
 
   const useStyles = makeStyles(theme => ({
     paper: {
@@ -74,7 +74,7 @@ const CreateOffersOrNeed = ({ formName }) => {
           <Typography component="h1" variant="h5">
             Create {formName}
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Field
               variant="outlined"
               margin="normal"
@@ -101,7 +101,11 @@ const CreateOffersOrNeed = ({ formName }) => {
               options={select}
               label="General type"
             />
-            <Field name="estimatedQuantity" label="Estimated quantity" component={GroupSelect} />
+            <Field
+              name="estimatedQuantity"
+              label="Estimated quantity"
+              component={GroupSelect}
+            />
             <Button
               type="button"
               fullWidth

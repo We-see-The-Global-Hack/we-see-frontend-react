@@ -3,9 +3,7 @@ import Title from "../../components/Title";
 import Causes from "./Cases";
 import Inbox from "./Inbox";
 import api from "libs/apis";
-import { Container } from "@material-ui/core";
 // components
-import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { Container, Button } from "@material-ui/core";
 

@@ -6,7 +6,10 @@ const apiRequest = (method, url) => (args) =>
 const Api = {
   todos: apiRequest("get", "todos/1"),
   listings: {
-    get: apiRequest("get", "listings"),
+    get: apiRequest("get", "listings")
+  },
+  userListings: {
+    create: apiRequest("post", "userListings")
   },
   auth: {
     signIn: apiRequest("post", "auth/login"),
