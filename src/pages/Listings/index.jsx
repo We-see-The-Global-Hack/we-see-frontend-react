@@ -4,8 +4,7 @@ import Causes from "./Cases";
 import Inbox from "./Inbox";
 import api from "libs/apis";
 // components
-import { Link } from "react-router-dom";
-import { Container, Button } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 
 import couchImg from "assets/img/listings/image.png";
 import lgbtImg from "assets/img/listings/image (1).png";
@@ -53,19 +52,6 @@ const Listings = () => {
           />
         </div>
         <div>
-          <div className={cn("listings_btn")}>
-            <Link to="/global/offers" className={cn("listings_link")}>
-              <Button color="primary" variant="contained">
-                Offers
-              </Button>
-            </Link>
-            <Link to="/global/needs" className={cn("listings_link")}>
-              <Button color="primary" variant="contained">
-                Needs
-              </Button>
-            </Link>
-          </div>
-
           <Inbox />
         </div>
       </div>

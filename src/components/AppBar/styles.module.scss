@@ -1,0 +1,12 @@
+.appBar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  align-items: center;
+}
+.appBar_title {
+  text-transform: uppercase;
+}
+.appBar_menu{
+  position: relative;
+}

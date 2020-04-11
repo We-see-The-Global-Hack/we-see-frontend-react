@@ -65,11 +65,11 @@ function App() {
             <Route path={"/listings/offers"} component={Offer} />
             <Route path={"/listings/create/needs"} component={CreateNeeds} />
             <Route path={"/listings/create/offers"} component={CreateOffers} />
-            <Route path={"/global/offers"} component={GlobalOffer} />
             <Route path={"/listings/needs"} component={Needs} />
-            <Route path={"/global/needs"} component={GlobalNeeds} />
+            <Route path={"/search/offers"} component={GlobalOffer} />
+            <Route path={"/search/needs"} component={GlobalNeeds} />
+            <Route path={'/search/user'} component={Search} />
             <Route path={"/listings"} component={Listings} />
-            <Route path={'/search'} component={Search} />
             <Route path="/" component={MainLayout} />
           </Switch>
         ) : (

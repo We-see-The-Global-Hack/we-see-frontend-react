@@ -1,16 +1,14 @@
 import React from "react";
 import { Button, Container } from "@material-ui/core";
-import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
 // components
 import Title from "components/Title";
 import Thing from "components/Thing";
-import Link from "components/Link";
-
 // styles
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import useOnFilter from 'pages/Global/useOnFilter';
 import Filters from 'pages/Global/templates/Filters'
+import ApplicationBar from "components/AppBar";
 
 const cn = classNames.bind(styles);
 
@@ -19,11 +17,9 @@ const GlobalNeeds = () => {
   
   return (
     <Container maxWidth="lg">
-      <Link to="/listings" style={cn("back_link")}>
-        <KeyboardArrowLeftIcon />
-        Back
-      </Link>
-      <Title text="Global Needs" />
+      <ApplicationBar />
+
+      <Title text="Search Needs" />
       <div className={cn("globalNeeds_filter")}>
         <Filters changeText={changeText} filters={filters} setFilters={setFilters} />
         <Button variant="contained" color="primary" onClick={search}>

@@ -7,9 +7,16 @@ import RadioButton from "components/RadioButton";
 import Multiselect from "components/Multiselect";
 import InputUploader from "components/UploaderInput";
 import DatePicker from "components/DatePicker";
-import { Link } from "react-router-dom";
 // mu
-import { Avatar, Button, Container, CssBaseline, Grid, Box, Typography } from '@material-ui/core';
+import {
+  Avatar,
+  Button,
+  Container,
+  CssBaseline,
+  Grid,
+  Box,
+  Typography,
+} from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 import Field from "components/Form/Field";
@@ -21,7 +28,7 @@ import useAuth from "hooks/useAuth";
 import useFetchData from "hooks/useFetchData";
 // options
 import { causes, targetAudience, gender } from "./options";
-import ApplicationBar from 'components/AppBar';
+import ApplicationBar from "components/AppBar";
 
 const styles = {
   gridItem: { marginTop: "10px", marginBottom: "10px" },
@@ -218,14 +225,6 @@ const Profile = () => {
         <Typography component="h1" variant="h5">
           Profile
         </Typography>
-        <div style={{ textAlign: "left", width: "100%", margin: "0 0 30px" }}>
-          <Link to="/listings" style={{ textDecoration: "none" }}>
-            <Button variant="contained" color="primary">
-              Listings
-            </Button>
-          </Link>
-        </div>
-
         <Formik
           initialValues={resource}
           enableReinitialize={true}
