@@ -36,10 +36,10 @@ function Copyright() {
 }
 
 const CreateOffersOrNeed = ({ formName }) => {
+  // TODO: add kind to formValues & dropdowns
   const onSubmit = useOnSubmit({
     api: api.userListings.create,
-    onSuccess: () => console.log("Gavno")
-  })
+  });
 
   const useStyles = makeStyles(theme => ({
     paper: {

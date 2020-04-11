@@ -9,7 +9,8 @@ const Api = {
     get: apiRequest("get", "listings")
   },
   userListings: {
-    create: apiRequest("post", "userListings")
+    create: apiRequest("post", "userListings"),
+    list: apiRequest('get', 'userListings'),
   },
   auth: {
     signIn: apiRequest("post", "auth/login"),

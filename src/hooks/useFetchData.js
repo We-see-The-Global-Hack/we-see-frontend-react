@@ -15,7 +15,9 @@ export default function useFetchData({
   const fetchResource = useCallback(async params => {
     try {
       setValues(state => ({ ...state, isLoading: true }));
+      console.log('e', params);
       const response = await api(params);
+      console.log('11');
       setValues({ resource: serializer(response.data), isLoading: false });
       return serializer(response.data);
     } catch (error) {

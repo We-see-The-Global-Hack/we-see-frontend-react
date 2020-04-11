@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Container, TextField} from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
 // components
 import Title from "components/Title";
@@ -9,35 +9,29 @@ import Link from "components/Link";
 // styles
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import useOnFilter from 'pages/Global/useOnFilter';
+import Filters from 'pages/Global/templates/Filters'
 
 const cn = classNames.bind(styles);
 
 const GlobalNeeds = () => {
+  const { filters, setFilters, resource, search, changeText } = useOnFilter('need');
+  
   return (
     <Container maxWidth="lg">
       <Link to="/listings" style={cn("back_link")}>
         <KeyboardArrowLeftIcon />
         Back
       </Link>
-      <Title text="My Needs" />
+      <Title text="Global Needs" />
       <div className={cn("globalNeeds_filter")}>
-        <TextField label="Title" style={{ width: 300 }} />
-        <TextField label="Category Name" style={{ width: 300 }} />
-        <Autocomplete
-            options={generalType}
-            style={{ width: 300 }}
-            size='small'
-            renderInput={(params) => (
-                <TextField {...params} label="Target audience" variant="outlined" />
-            )}
-        />
-        <Button variant="contained" color="primary">
+        <Filters changeText={changeText} filters={filters} setFilters={setFilters} />
+        <Button variant="contained" color="primary" onClick={search}>
           Search
         </Button>
       </div>
       <div>
-        {initialNeeds.map((item, index) => (
+        {resource.map((item, index) => (
           <Thing key={index} {...item} />
         ))}
       </div>
@@ -47,7 +41,6 @@ const GlobalNeeds = () => {
 
 export default GlobalNeeds;
 
-const generalType = ["material", "time", "money"];
 
 const initialNeeds = [
   {

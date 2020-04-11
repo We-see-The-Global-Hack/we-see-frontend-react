@@ -1,7 +1,6 @@
 import React from "react";
-import { Button, Container, TextField } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import Link from "components/Link";
 // components
 import Title from "components/Title";
@@ -9,10 +8,14 @@ import Thing from "components/Thing";
 // styles
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
+import Filters from 'pages/Global/templates/Filters';
+import useOnFilter from 'pages/Global/useOnFilter';
 
 const cn = classNames.bind(styles);
 
 const GlobalOffers = () => {
+  const { filters, setFilters, resource, search, changeText } = useOnFilter('offer');
+  
   return (
     <Container maxWidth="lg">
       <Link to="/listings" style={cn("back_link")}>
@@ -21,22 +24,13 @@ const GlobalOffers = () => {
       </Link>
       <Title text="Offer" />
       <div className={cn("globalOffers_filter")}>
-        <TextField label="Title" style={{ width: 300 }} />
-        <TextField label="Category Name" style={{ width: 300 }} />
-        <Autocomplete
-          options={generalType}
-          style={{ width: 300 }}
-          size='small'
-          renderInput={(params) => (
-            <TextField {...params} label="Target audience" variant="outlined" />
-          )}
-        />
-        <Button variant="contained" color="primary">
+        <Filters changeText={changeText} filters={filters} setFilters={setFilters} />
+        <Button variant="contained" color="primary" onClick={search}>
           Search
         </Button>
       </div>
       <div>
-        {initialOffer.map((item, index) => (
+        {resource.map((item, index) => (
           <Thing key={index} {...item} />
         ))}
       </div>
