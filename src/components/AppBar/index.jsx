@@ -79,24 +79,30 @@ const ApplicationBar = () => {
                     />
                     <Menu {...bindMenu(popupState)}>
                       <MenuItem
+                          {...a11yProps(1)}
                         onClick={() => {
                           popupState.close();
+                          handleChange(1, 1);
                           history.push("/search/user");
                         }}
                       >
                         Search User
                       </MenuItem>
                       <MenuItem
+                          {...a11yProps(1)}
                         onClick={() => {
                           popupState.close();
+                          handleChange(1, 1);
                           history.push("/search/offers");
                         }}
                       >
                         Search Offers
                       </MenuItem>
                       <MenuItem
+                          {...a11yProps(1)}
                         onClick={() => {
                           popupState.close();
+                          handleChange(1, 1);
                           history.push("/search/needs");
                         }}
                       >
