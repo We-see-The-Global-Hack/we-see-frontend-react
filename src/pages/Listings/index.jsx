@@ -45,14 +45,14 @@ const Listings = () => {
         </div>
         <div>
           <div className={cn("listings_btn")}>
-            <Link to="/search/offers" className={cn("listings_link")}>
+            <Link to="/search/offers" className={cn("listings_link listings_link_first")}>
               <Button color="primary" variant="contained">
-                Offers
+                Search Offers
               </Button>
             </Link>
             <Link to="/search/needs" className={cn("listings_link")}>
               <Button color="primary" variant="contained">
-                Needs
+                Search Needs
               </Button>
             </Link>
           </div>
