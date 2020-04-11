@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import MainLayout from "pages/MainLayout";
 import Auth from "pages/Auth";
 import useAuth from "hooks/useAuth";
@@ -22,11 +22,11 @@ import ApplicationBar from "components/AppBar";
 const theme = createMuiTheme({
   palette: {
     primary: teal,
-    secondary: green,
+    secondary: green
   },
   status: {
-    danger: "orange",
-  },
+    danger: "orange"
+  }
 });
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
     api: api.auth.checkUser,
     initialParams: {},
     initialLoad: false,
-    initialValues: {},
+    initialValues: {}
   });
 
   const checkUser = async () => {
@@ -75,13 +75,13 @@ function App() {
               <Route path={"/search/needs"} component={GlobalNeeds} />
               <Route path={"/search/user"} component={Search} />
               <Route path={"/listings"} component={Listings} />
-              <Route path="/" component={MainLayout} />
+              <Route path="/" component={Listings} />
             </Switch>
           </>
         ) : (
           <Switch>
             <Route path={["/sign-in", "/sign-up"]} component={Auth} />
-            <Route path="/" component={MainLayout} />
+            <Redirect to={"/sign-in"} />
           </Switch>
         )}
       </>
