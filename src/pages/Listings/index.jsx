@@ -143,8 +143,8 @@ const initialOffer = [
     kind: "offer",
     image: dogTollImg,
     estimatedQuantity: {
-      value: 3,
-      measurements: "week",
+      value: 1,
+      measurements: "toy",
     },
   },
   {
