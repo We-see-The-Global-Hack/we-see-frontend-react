@@ -31,6 +31,7 @@ const Case = ({
   title,
   description,
   estimatedQuantity,
+  image,
 }) => {
   const classes = useStyles();
   const [isOpen, setInOpen] = useState(false);
@@ -45,12 +46,12 @@ const Case = ({
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={mountainImage}
+            image={image}
             title="Contemplative Reptile"
           />
         </CardActionArea>
         <CardActions>
-          <Typography gutterBottom>{categoryName}</Typography>
+          <Typography gutterBottom>{title}</Typography>
         </CardActions>
       </Card>
       <Modal
