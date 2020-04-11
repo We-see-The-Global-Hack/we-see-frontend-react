@@ -40,6 +40,9 @@ const Thing = ({ categoryName, title, description, estimatedQuantity }) => {
           >
             {description}
           </Typography>
+          <p>
+            from: <span style={{ color: 'green', textDecoration: 'underline', cursor: 'pointer' }}>John Snow</span>
+          </p>
         </div>
         <div className={cn('thing_add')}>
           <Typography variant="h5" component="p" color="primary">
